@@ -1,0 +1,15 @@
+{
+  "_about": "Sample callers for the demo, voiced by Gnani text-to-speech (no real person's voice). Each line goes through the same speech-to-text as a microphone.",
+  "callers": [
+    {"phone": "+91 90000 00001", "label": "Priya Sharma, Delhi", "voice": "Riyaa",
+     "lines": ["Hello, mera kurti wala order kab tak aayega?", "Theek hai, bas itna hi. Thank you."]},
+    {"phone": "+91 90000 00002", "label": "Rahul Verma, Pune", "voice": "Devansh",
+     "lines": ["Hello, mera bedsheet abhi tak nahi mila.", "Haan, complaint darj kar dijiye.", "Nahi bas, dhanyavaad."]},
+    {"phone": "+91 90000 00003", "label": "Sameer Khan, Lucknow", "voice": "Shubham",
+     "lines": ["Saree ka colour photo se bilkul alag hai, mujhe return karna hai.", "Haan ji, kar dijiye.", "Okay, bye."]},
+    {"phone": "+91 90000 00004", "label": "Neha Gupta, Indore", "voice": "Kalpana",
+     "lines": ["Mujhe apna dupatta wala order cancel karna hai.", "Haan, kar dijiye."]},
+    {"phone": "+91 98765 00000", "label": "Unknown number", "voice": "Yashraj",
+     "lines": ["Mera order kahan hai?", "Order number chaar aath do ek.", "Achha, mujhe isko return karna hai."]}
+  ]
+}

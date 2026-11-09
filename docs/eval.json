@@ -1,0 +1,1128 @@
+[
+ {
+  "split": "tune",
+  "text": "Mera kurti wala order kab tak aayega?",
+  "intent": "status",
+  "order": null,
+  "text_ok": true,
+  "text_got": "status",
+  "voice": "Riyaa",
+  "clean": {
+   "heard": "Mera kurti wala order kab tak aayega?",
+   "ok": true,
+   "got": "status",
+   "orders": [],
+   "latency_s": 0.56
+  },
+  "phone": {
+   "heard": "mera kurti wala order kab tak aayega?",
+   "ok": true,
+   "got": "status",
+   "orders": [],
+   "latency_s": 0.53
+  }
+ },
+ {
+  "split": "tune",
+  "text": "Order four eight two one ka status kya hai?",
+  "intent": "status",
+  "order": "4821",
+  "text_ok": true,
+  "text_got": "status",
+  "voice": "Devansh",
+  "clean": {
+   "heard": "Order four eight two one ka status kya hai?",
+   "ok": true,
+   "got": "status",
+   "orders": [
+    "4821"
+   ],
+   "latency_s": 0.74
+  },
+  "phone": {
+   "heard": "Order four eight two one ka status kya hai?",
+   "ok": true,
+   "got": "status",
+   "orders": [
+    "4821"
+   ],
+   "latency_s": 0.54
+  }
+ },
+ {
+  "split": "tune",
+  "text": "Hello, mera parcel kahan pahuncha?",
+  "intent": "status",
+  "order": null,
+  "text_ok": true,
+  "text_got": "status",
+  "voice": "Shubham",
+  "clean": {
+   "heard": "Hello, mera parcel kahan pahunche?",
+   "ok": true,
+   "got": "status",
+   "orders": [],
+   "latency_s": 0.53
+  },
+  "phone": {
+   "heard": "Hello, mera parcel kahan pahuncha?",
+   "ok": true,
+   "got": "status",
+   "orders": [],
+   "latency_s": 0.47
+  }
+ },
+ {
+  "split": "tune",
+  "text": "Can you tell me where my order is?",
+  "intent": "status",
+  "order": null,
+  "text_ok": true,
+  "text_got": "status",
+  "voice": "Kalpana",
+  "clean": {
+   "heard": "Can you tell me where my order is?",
+   "ok": true,
+   "got": "status",
+   "orders": [],
+   "latency_s": 0.53
+  },
+  "phone": {
+   "heard": "Can you tell me where my order is?",
+   "ok": true,
+   "got": "status",
+   "orders": [],
+   "latency_s": 0.47
+  }
+ },
+ {
+  "split": "tune",
+  "text": "Mera bedsheet abhi tak nahi mila.",
+  "intent": "not_received",
+  "order": null,
+  "text_ok": true,
+  "text_got": "not_received",
+  "voice": "Yashraj",
+  "clean": {
+   "heard": "mera bed sheet abhi tak nahi mila.",
+   "ok": true,
+   "got": "not_received",
+   "orders": [],
+   "latency_s": 0.58
+  },
+  "phone": {
+   "heard": "mera bedsheet abhi tak nahi mila.",
+   "ok": true,
+   "got": "not_received",
+   "orders": [],
+   "latency_s": 0.58
+  }
+ },
+ {
+  "split": "tune",
+  "text": "Parcel deliver dikha raha hai par mujhe mila hi nahi.",
+  "intent": "not_received",
+  "order": null,
+  "text_ok": true,
+  "text_got": "not_received",
+  "voice": "Avinash",
+  "clean": {
+   "heard": "Parcel deliver dikha raha hai, par mujhe mila hi nahi.",
+   "ok": true,
+   "got": "not_received",
+   "orders": [],
+   "latency_s": 0.6
+  },
+  "phone": {
+   "heard": "parcel deliver dikha raha hai, par mujhe mila hi nahi.",
+   "ok": true,
+   "got": "not_received",
+   "orders": [],
+   "latency_s": 0.57
+  }
+ },
+ {
+  "split": "tune",
+  "text": "I never received my order, it says delivered.",
+  "intent": "not_received",
+  "order": null,
+  "text_ok": true,
+  "text_got": "not_received",
+  "voice": "Chetana",
+  "clean": {
+   "heard": "I never received my order; it says delivered.",
+   "ok": true,
+   "got": "not_received",
+   "orders": [],
+   "latency_s": 0.55
+  },
+  "phone": {
+   "heard": "I never received my order; it says delivered.",
+   "ok": true,
+   "got": "not_received",
+   "orders": [],
+   "latency_s": 0.54
+  }
+ },
+ {
+  "split": "tune",
+  "text": "Saree ka colour photo se alag hai, mujhe return karna hai.",
+  "intent": "return",
+  "order": null,
+  "text_ok": true,
+  "text_got": "return",
+  "voice": "Tarika",
+  "clean": {
+   "heard": "Sari ka color photo se alag hai, mujhe return karna hai.",
+   "ok": true,
+   "got": "return",
+   "orders": [],
+   "latency_s": 0.62
+  },
+  "phone": {
+   "heard": "saree ka color photo se alag hai, mujhe return karna hai.",
+   "ok": true,
+   "got": "return",
+   "orders": [],
+   "latency_s": 0.56
+  }
+ },
+ {
+  "split": "tune",
+  "text": "Mujhe paise wapas chahiye.",
+  "intent": "return",
+  "order": null,
+  "text_ok": true,
+  "text_got": "return",
+  "voice": "Prakash",
+  "clean": {
+   "heard": "Mujhe paise wapas chahiye.",
+   "ok": true,
+   "got": "return",
+   "orders": [],
+   "latency_s": 0.51
+  },
+  "phone": {
+   "heard": "te paise wapas chahine.",
+   "ok": true,
+   "got": "return",
+   "orders": [],
+   "latency_s": 0.48
+  }
+ },
+ {
+  "split": "tune",
+  "text": "I want to return the saree, order four eight two three.",
+  "intent": "return",
+  "order": "4823",
+  "text_ok": true,
+  "text_got": "return",
+  "voice": "Lakshmi",
+  "clean": {
+   "heard": "I want to return the saree, order four eight two three.",
+   "ok": true,
+   "got": "return",
+   "orders": [
+    "4823"
+   ],
+   "latency_s": 0.62
+  },
+  "phone": {
+   "heard": "I want to return the saree, order four eight two three.",
+   "ok": true,
+   "got": "return",
+   "orders": [
+    "4823"
+   ],
+   "latency_s": 0.55
+  }
+ },
+ {
+  "split": "tune",
+  "text": "Dupatta phata hua aaya hai.",
+  "intent": "damaged",
+  "order": null,
+  "text_ok": true,
+  "text_got": "damaged",
+  "voice": "Riyaa",
+  "clean": {
+   "heard": "dupatta fata hua aaya hai.",
+   "ok": true,
+   "got": "damaged",
+   "orders": [],
+   "latency_s": 0.51
+  },
+  "phone": {
+   "heard": "dupatta fata hua aaya hai.",
+   "ok": true,
+   "got": "damaged",
+   "orders": [],
+   "latency_s": 0.47
+  }
+ },
+ {
+  "split": "tune",
+  "text": "Mujhe galat size bhej diya.",
+  "intent": "damaged",
+  "order": null,
+  "text_ok": true,
+  "text_got": "damaged",
+  "voice": "Devansh",
+  "clean": {
+   "heard": "Mujhe galat size bhej diya.",
+   "ok": true,
+   "got": "damaged",
+   "orders": [],
+   "latency_s": 0.52
+  },
+  "phone": {
+   "heard": "je galat size bhej diya.",
+   "ok": true,
+   "got": "damaged",
+   "orders": [],
+   "latency_s": 0.48
+  }
+ },
+ {
+  "split": "tune",
+  "text": "The product is damaged.",
+  "intent": "damaged",
+  "order": null,
+  "text_ok": true,
+  "text_got": "damaged",
+  "voice": "Shubham",
+  "clean": {
+   "heard": "The product is damaged.",
+   "ok": true,
+   "got": "damaged",
+   "orders": [],
+   "latency_s": 0.51
+  },
+  "phone": {
+   "heard": "Product is damaged.",
+   "ok": true,
+   "got": "damaged",
+   "orders": [],
+   "latency_s": 0.45
+  }
+ },
+ {
+  "split": "tune",
+  "text": "Mujhe apna order cancel karna hai.",
+  "intent": "cancel",
+  "order": null,
+  "text_ok": true,
+  "text_got": "cancel",
+  "voice": "Kalpana",
+  "clean": {
+   "heard": "Mujhe apna order cancel karna hai.",
+   "ok": true,
+   "got": "cancel",
+   "orders": [],
+   "latency_s": 0.53
+  },
+  "phone": {
+   "heard": "Mujhe apna order cancel karna hai.",
+   "ok": true,
+   "got": "cancel",
+   "orders": [],
+   "latency_s": 0.47
+  }
+ },
+ {
+  "split": "tune",
+  "text": "Please cancel order four eight two four.",
+  "intent": "cancel",
+  "order": "4824",
+  "text_ok": true,
+  "text_got": "cancel",
+  "voice": "Yashraj",
+  "clean": {
+   "heard": "Please cancel order four eight two four.",
+   "ok": true,
+   "got": "cancel",
+   "orders": [
+    "4824"
+   ],
+   "latency_s": 0.55
+  },
+  "phone": {
+   "heard": "Cancel order four eight two four.",
+   "ok": true,
+   "got": "cancel",
+   "orders": [
+    "4824"
+   ],
+   "latency_s": 0.52
+  }
+ },
+ {
+  "split": "tune",
+  "text": "Mera address change karna hai.",
+  "intent": "address",
+  "order": null,
+  "text_ok": true,
+  "text_got": "address",
+  "voice": "Avinash",
+  "clean": {
+   "heard": "mera address change karna hai.",
+   "ok": true,
+   "got": "address",
+   "orders": [],
+   "latency_s": 0.53
+  },
+  "phone": {
+   "heard": "mera address change karna hai.",
+   "ok": true,
+   "got": "address",
+   "orders": [],
+   "latency_s": 0.45
+  }
+ },
+ {
+  "split": "tune",
+  "text": "Mujhe kisi insaan se baat karni hai.",
+  "intent": "human",
+  "order": null,
+  "text_ok": true,
+  "text_got": "human",
+  "voice": "Chetana",
+  "clean": {
+   "heard": "Mujhe kisi insan se baat karni hai.",
+   "ok": true,
+   "got": "human",
+   "orders": [],
+   "latency_s": 0.55
+  },
+  "phone": {
+   "heard": "Se vaat kar.",
+   "ok": false,
+   "got": "unknown",
+   "orders": [],
+   "latency_s": 0.5
+  }
+ },
+ {
+  "split": "tune",
+  "text": "Seller se baat karwa dijiye.",
+  "intent": "human",
+  "order": null,
+  "text_ok": true,
+  "text_got": "human",
+  "voice": "Tarika",
+  "clean": {
+   "heard": "seller se baat karwa dijiye.",
+   "ok": true,
+   "got": "human",
+   "orders": [],
+   "latency_s": 0.53
+  },
+  "phone": {
+   "heard": "seller se baat karva dijiye.",
+   "ok": true,
+   "got": "human",
+   "orders": [],
+   "latency_s": 0.47
+  }
+ },
+ {
+  "split": "tune",
+  "text": "Theek hai, dhanyavaad.",
+  "intent": "bye",
+  "order": null,
+  "text_ok": true,
+  "text_got": "bye",
+  "voice": "Prakash",
+  "clean": {
+   "heard": "Thik hai, dhanyavad.",
+   "ok": true,
+   "got": "bye",
+   "orders": [],
+   "latency_s": 0.52
+  },
+  "phone": {
+   "heard": "Thik hai, dhanyavad.",
+   "ok": true,
+   "got": "bye",
+   "orders": [],
+   "latency_s": 0.47
+  }
+ },
+ {
+  "split": "tune",
+  "text": "Okay thank you, bye.",
+  "intent": "bye",
+  "order": null,
+  "text_ok": true,
+  "text_got": "bye",
+  "voice": "Lakshmi",
+  "clean": {
+   "heard": "Okay, thank you. Bye.",
+   "ok": true,
+   "got": "bye",
+   "orders": [],
+   "latency_s": 0.52
+  },
+  "phone": {
+   "heard": "Ok, thank you.",
+   "ok": true,
+   "got": "bye",
+   "orders": [],
+   "latency_s": 0.46
+  }
+ },
+ {
+  "split": "holdout",
+  "text": "Bhaiya mera order abhi kidhar hai?",
+  "intent": "status",
+  "order": null,
+  "text_ok": true,
+  "text_got": "status",
+  "voice": "Riyaa",
+  "clean": {
+   "heard": "Bhaiya, mera order abhi kidhar hai?",
+   "ok": true,
+   "got": "status",
+   "orders": [],
+   "latency_s": 0.55
+  },
+  "phone": {
+   "heard": "ya mera order abhi kinhar hai?",
+   "ok": false,
+   "got": "unknown",
+   "orders": [],
+   "latency_s": 0.48
+  }
+ },
+ {
+  "split": "holdout",
+  "text": "Kurti kab tak deliver ho jaayegi?",
+  "intent": "status",
+  "order": null,
+  "text_ok": true,
+  "text_got": "status",
+  "voice": "Devansh",
+  "clean": {
+   "heard": "Kurti kab tak deliver ho jayegi?",
+   "ok": true,
+   "got": "status",
+   "orders": [],
+   "latency_s": 0.54
+  },
+  "phone": {
+   "heard": "Kurti kab tak deliver ho jayegi?",
+   "ok": true,
+   "got": "status",
+   "orders": [],
+   "latency_s": 0.47
+  }
+ },
+ {
+  "split": "holdout",
+  "text": "Order number chaar aath do ek track karna hai.",
+  "intent": "status",
+  "order": "4821",
+  "text_ok": true,
+  "text_got": "status",
+  "voice": "Shubham",
+  "clean": {
+   "heard": "Order number char aath do ek track karna hai.",
+   "ok": true,
+   "got": "status",
+   "orders": [
+    "4821"
+   ],
+   "latency_s": 0.54
+  },
+  "phone": {
+   "heard": "Order number char aath do ek track karna.",
+   "ok": true,
+   "got": "status",
+   "orders": [
+    "4821"
+   ],
+   "latency_s": 0.52
+  }
+ },
+ {
+  "split": "holdout",
+  "text": "Hi, I just wanted to check the delivery date of my order.",
+  "intent": "status",
+  "order": null,
+  "text_ok": true,
+  "text_got": "status",
+  "voice": "Kalpana",
+  "clean": {
+   "heard": "Hi, I just wanted to check the delivery date of my order.",
+   "ok": true,
+   "got": "status",
+   "orders": [],
+   "latency_s": 0.61
+  },
+  "phone": {
+   "heard": "Hi, I just wanted to check the delivery date of my order.",
+   "ok": true,
+   "got": "status",
+   "orders": [],
+   "latency_s": 0.56
+  }
+ },
+ {
+  "split": "holdout",
+  "text": "Mere order ka kya update hai?",
+  "intent": "status",
+  "order": null,
+  "text_ok": false,
+  "text_got": "unknown",
+  "voice": "Yashraj",
+  "clean": {
+   "heard": "mere order ka kya update hai?",
+   "ok": false,
+   "got": "unknown",
+   "orders": [],
+   "latency_s": 0.51
+  },
+  "phone": {
+   "heard": "Mere order ka kya update hai?",
+   "ok": false,
+   "got": "unknown",
+   "orders": [],
+   "latency_s": 0.52
+  }
+ },
+ {
+  "split": "holdout",
+  "text": "App mein delivered likha hai lekin parcel mere paas nahi aaya.",
+  "intent": "not_received",
+  "order": null,
+  "text_ok": true,
+  "text_got": "not_received",
+  "voice": "Avinash",
+  "clean": {
+   "heard": "App mein delivered likha hai lekin parcel mere paas nahi aaya.",
+   "ok": true,
+   "got": "not_received",
+   "orders": [],
+   "latency_s": 0.61
+  },
+  "phone": {
+   "heard": "App mein delivered likha hai, lekin parcel mere paas nahi aaya.",
+   "ok": true,
+   "got": "not_received",
+   "orders": [],
+   "latency_s": 0.57
+  }
+ },
+ {
+  "split": "holdout",
+  "text": "Mujhe abhi tak koi parcel receive nahi hua.",
+  "intent": "not_received",
+  "order": null,
+  "text_ok": true,
+  "text_got": "not_received",
+  "voice": "Chetana",
+  "clean": {
+   "heard": "Mujhe abhi tak koi parcel receive nahi hua.",
+   "ok": true,
+   "got": "not_received",
+   "orders": [],
+   "latency_s": 0.53
+  },
+  "phone": {
+   "heard": "Mujhe abhi tak koi parcel receive nahi hua.",
+   "ok": true,
+   "got": "not_received",
+   "orders": [],
+   "latency_s": 0.5
+  }
+ },
+ {
+  "split": "holdout",
+  "text": "Courier wala bol raha hai de diya, par maine kuch nahi liya.",
+  "intent": "not_received",
+  "order": null,
+  "text_ok": false,
+  "text_got": "no",
+  "voice": "Tarika",
+  "clean": {
+   "heard": "courier wala bol raha hai de diya, par maine kuch nahi liya.",
+   "ok": false,
+   "got": "no",
+   "orders": [],
+   "latency_s": 0.63
+  },
+  "phone": {
+   "heard": "courier wala bol raha hai, \"de diya,\" par maine kuch nahi liya.",
+   "ok": false,
+   "got": "no",
+   "orders": [],
+   "latency_s": 0.57
+  }
+ },
+ {
+  "split": "holdout",
+  "text": "My package was marked delivered but I didn't get it.",
+  "intent": "not_received",
+  "order": null,
+  "text_ok": true,
+  "text_got": "not_received",
+  "voice": "Prakash",
+  "clean": {
+   "heard": "My package was marked delivered, but I didn't get it.",
+   "ok": true,
+   "got": "not_received",
+   "orders": [],
+   "latency_s": 0.6
+  },
+  "phone": {
+   "heard": "My package was marked delivered, but I didn't get it.",
+   "ok": true,
+   "got": "not_received",
+   "orders": [],
+   "latency_s": 0.55
+  }
+ },
+ {
+  "split": "holdout",
+  "text": "Yeh bedsheet mujhe pasand nahi aayi, wapas karni hai.",
+  "intent": "return",
+  "order": null,
+  "text_ok": true,
+  "text_got": "return",
+  "voice": "Lakshmi",
+  "clean": {
+   "heard": "ye bedsheet mujhe pasand nahi aayi, wapas karni hai.",
+   "ok": true,
+   "got": "return",
+   "orders": [],
+   "latency_s": 0.62
+  },
+  "phone": {
+   "heard": "ye bedsheet mujhe pasand nahi aayi, wapas karni hai.",
+   "ok": true,
+   "got": "return",
+   "orders": [],
+   "latency_s": 0.57
+  }
+ },
+ {
+  "split": "holdout",
+  "text": "Refund kab milega? Main saree return karna chahta hoon.",
+  "intent": "return",
+  "order": null,
+  "text_ok": true,
+  "text_got": "return",
+  "voice": "Riyaa",
+  "clean": {
+   "heard": "refund kab milega? main sari return karna chahta hoon.",
+   "ok": true,
+   "got": "return",
+   "orders": [],
+   "latency_s": 0.6
+  },
+  "phone": {
+   "heard": "Refund kab milega? Main sari return karna chahta hoon.",
+   "ok": true,
+   "got": "return",
+   "orders": [],
+   "latency_s": 0.56
+  }
+ },
+ {
+  "split": "holdout",
+  "text": "Order four eight two three ka refund chahiye.",
+  "intent": "return",
+  "order": "4823",
+  "text_ok": true,
+  "text_got": "return",
+  "voice": "Devansh",
+  "clean": {
+   "heard": "Order four eight two three ka refund chahiye.",
+   "ok": true,
+   "got": "return",
+   "orders": [
+    "4823"
+   ],
+   "latency_s": 0.54
+  },
+  "phone": {
+   "heard": "Order four eight two three ka refund chahiye.",
+   "ok": true,
+   "got": "return",
+   "orders": [
+    "4823"
+   ],
+   "latency_s": 0.53
+  }
+ },
+ {
+  "split": "holdout",
+  "text": "Can I exchange this for a bigger size?",
+  "intent": "return",
+  "order": null,
+  "text_ok": true,
+  "text_got": "return",
+  "voice": "Shubham",
+  "clean": {
+   "heard": "Can I exchange this for a bigger size?",
+   "ok": true,
+   "got": "return",
+   "orders": [],
+   "latency_s": 0.53
+  },
+  "phone": {
+   "heard": "Can I exchange this for a bigger size?",
+   "ok": true,
+   "got": "return",
+   "orders": [],
+   "latency_s": 0.48
+  }
+ },
+ {
+  "split": "holdout",
+  "text": "Saree ka pallu fata hua hai.",
+  "intent": "damaged",
+  "order": null,
+  "text_ok": true,
+  "text_got": "damaged",
+  "voice": "Kalpana",
+  "clean": {
+   "heard": "sari ka pallu fata hua hai.",
+   "ok": true,
+   "got": "damaged",
+   "orders": [],
+   "latency_s": 0.54
+  },
+  "phone": {
+   "heard": "Sari ka pallu pata hua hai.",
+   "ok": false,
+   "got": "unknown",
+   "orders": [],
+   "latency_s": 0.49
+  }
+ },
+ {
+  "split": "holdout",
+  "text": "Bedsheet pe daag hai, bilkul ganda aaya hai.",
+  "intent": "damaged",
+  "order": null,
+  "text_ok": true,
+  "text_got": "damaged",
+  "voice": "Yashraj",
+  "clean": {
+   "heard": "bedsheet pe daag hai, bilkul ganda aaya hai.",
+   "ok": true,
+   "got": "damaged",
+   "orders": [],
+   "latency_s": 0.6
+  },
+  "phone": {
+   "heard": "bed sheet pe daag hai, bilkul ganda aaya hai.",
+   "ok": true,
+   "got": "damaged",
+   "orders": [],
+   "latency_s": 0.56
+  }
+ },
+ {
+  "split": "holdout",
+  "text": "You sent me the wrong colour.",
+  "intent": "damaged",
+  "order": null,
+  "text_ok": true,
+  "text_got": "damaged",
+  "voice": "Avinash",
+  "clean": {
+   "heard": "You sent me the wrong colour.",
+   "ok": true,
+   "got": "damaged",
+   "orders": [],
+   "latency_s": 0.52
+  },
+  "phone": {
+   "heard": "Sent me the wrong colour.",
+   "ok": true,
+   "got": "damaged",
+   "orders": [],
+   "latency_s": 0.47
+  }
+ },
+ {
+  "split": "holdout",
+  "text": "Packet khola toh andar kuch aur hi tha.",
+  "intent": "damaged",
+  "order": null,
+  "text_ok": false,
+  "text_got": "unknown",
+  "voice": "Chetana",
+  "clean": {
+   "heard": "packet khola toh andar kuch aur hi tha.",
+   "ok": false,
+   "got": "unknown",
+   "orders": [],
+   "latency_s": 0.54
+  },
+  "phone": {
+   "heard": "packet khola toh andar kuch aur hi tha.",
+   "ok": false,
+   "got": "unknown",
+   "orders": [],
+   "latency_s": 0.48
+  }
+ },
+ {
+  "split": "holdout",
+  "text": "Dupatta wala order radd kar dijiye.",
+  "intent": "cancel",
+  "order": null,
+  "text_ok": true,
+  "text_got": "cancel",
+  "voice": "Tarika",
+  "clean": {
+   "heard": "duppatta wala order add kar dijiye.",
+   "ok": false,
+   "got": "yes",
+   "orders": [],
+   "latency_s": 0.54
+  },
+  "phone": {
+   "heard": "patta wala order land kar dijiye.",
+   "ok": false,
+   "got": "yes",
+   "orders": [],
+   "latency_s": 0.49
+  }
+ },
+ {
+  "split": "holdout",
+  "text": "I don't want it anymore, please cancel.",
+  "intent": "cancel",
+  "order": null,
+  "text_ok": true,
+  "text_got": "cancel",
+  "voice": "Prakash",
+  "clean": {
+   "heard": "I don't want it anymore. Please cancel.",
+   "ok": true,
+   "got": "cancel",
+   "orders": [],
+   "latency_s": 0.55
+  },
+  "phone": {
+   "heard": "Don't want it anymore. Please cancel.",
+   "ok": true,
+   "got": "cancel",
+   "orders": [],
+   "latency_s": 0.48
+  }
+ },
+ {
+  "split": "holdout",
+  "text": "Cancel karna hai order chaar aath do chaar.",
+  "intent": "cancel",
+  "order": "4824",
+  "text_ok": true,
+  "text_got": "cancel",
+  "voice": "Lakshmi",
+  "clean": {
+   "heard": "cancel karna hai order char aath do char.",
+   "ok": true,
+   "got": "cancel",
+   "orders": [
+    "4824"
+   ],
+   "latency_s": 0.53
+  },
+  "phone": {
+   "heard": "cancel karna hai order icarat dosar.",
+   "ok": false,
+   "got": "cancel",
+   "orders": [],
+   "latency_s": 0.54
+  }
+ },
+ {
+  "split": "holdout",
+  "text": "Delivery ka pata badalna hai, naya address dena hai.",
+  "intent": "address",
+  "order": null,
+  "text_ok": false,
+  "text_got": "return",
+  "voice": "Riyaa",
+  "clean": {
+   "heard": "delivery ka pata badalna hai, naya address dena hai.",
+   "ok": false,
+   "got": "return",
+   "orders": [],
+   "latency_s": 0.61
+  },
+  "phone": {
+   "heard": "ka pata badalna hai, naya address dena hai.",
+   "ok": false,
+   "got": "return",
+   "orders": [],
+   "latency_s": 0.56
+  }
+ },
+ {
+  "split": "holdout",
+  "text": "Kya main delivery address update kar sakti hoon?",
+  "intent": "address",
+  "order": null,
+  "text_ok": true,
+  "text_got": "address",
+  "voice": "Devansh",
+  "clean": {
+   "heard": "Kya main delivery address update kar sakti hoon?",
+   "ok": true,
+   "got": "address",
+   "orders": [],
+   "latency_s": 0.53
+  },
+  "phone": {
+   "heard": "Kya main delivery address update kar sakti hoon?",
+   "ok": true,
+   "got": "address",
+   "orders": [],
+   "latency_s": 0.5
+  }
+ },
+ {
+  "split": "holdout",
+  "text": "Mujhe owner se baat karni hai.",
+  "intent": "human",
+  "order": null,
+  "text_ok": true,
+  "text_got": "human",
+  "voice": "Shubham",
+  "clean": {
+   "heard": "Mujhe owner se baat karni hai.",
+   "ok": true,
+   "got": "human",
+   "orders": [],
+   "latency_s": 0.53
+  },
+  "phone": {
+   "heard": "Mujhe owner se baat karni.",
+   "ok": true,
+   "got": "human",
+   "orders": [],
+   "latency_s": 0.47
+  }
+ },
+ {
+  "split": "holdout",
+  "text": "Please connect me to a real person.",
+  "intent": "human",
+  "order": null,
+  "text_ok": true,
+  "text_got": "human",
+  "voice": "Kalpana",
+  "clean": {
+   "heard": "Please connect me to a real person.",
+   "ok": true,
+   "got": "human",
+   "orders": [],
+   "latency_s": 0.53
+  },
+  "phone": {
+   "heard": "Please connect me to a real person.",
+   "ok": true,
+   "got": "human",
+   "orders": [],
+   "latency_s": 0.47
+  }
+ },
+ {
+  "split": "holdout",
+  "text": "Mujhe call back chahiye.",
+  "intent": "human",
+  "order": null,
+  "text_ok": true,
+  "text_got": "human",
+  "voice": "Yashraj",
+  "clean": {
+   "heard": "Mujhe call back chahiye.",
+   "ok": true,
+   "got": "human",
+   "orders": [],
+   "latency_s": 0.51
+  },
+  "phone": {
+   "heard": "Mujhe call back chahiye.",
+   "ok": true,
+   "got": "human",
+   "orders": [],
+   "latency_s": 0.46
+  }
+ },
+ {
+  "split": "holdout",
+  "text": "Bas itna hi poochna tha, shukriya.",
+  "intent": "bye",
+  "order": null,
+  "text_ok": true,
+  "text_got": "bye",
+  "voice": "Avinash",
+  "clean": {
+   "heard": "Bas itna hi poochhna tha. Shukriya.",
+   "ok": true,
+   "got": "bye",
+   "orders": [],
+   "latency_s": 0.54
+  },
+  "phone": {
+   "heard": "na hi poochhna tha.",
+   "ok": false,
+   "got": "unknown",
+   "orders": [],
+   "latency_s": 0.47
+  }
+ },
+ {
+  "split": "holdout",
+  "text": "Thank you so much, rakhta hoon.",
+  "intent": "bye",
+  "order": null,
+  "text_ok": true,
+  "text_got": "bye",
+  "voice": "Chetana",
+  "clean": {
+   "heard": "Thank you so much. Rakhta hoon.",
+   "ok": true,
+   "got": "bye",
+   "orders": [],
+   "latency_s": 0.53
+  },
+  "phone": {
+   "heard": "So much rakhta hoon.",
+   "ok": true,
+   "got": "bye",
+   "orders": [],
+   "latency_s": 0.47
+  }
+ },
+ {
+  "split": "holdout",
+  "text": "Achha theek hai, bye bye.",
+  "intent": "bye",
+  "order": null,
+  "text_ok": true,
+  "text_got": "bye",
+  "voice": "Tarika",
+  "clean": {
+   "heard": "Accha, theek hai. Bye.",
+   "ok": true,
+   "got": "bye",
+   "orders": [],
+   "latency_s": 0.52
+  },
+  "phone": {
+   "heard": "Thik hai, bye.",
+   "ok": true,
+   "got": "bye",
+   "orders": [],
+   "latency_s": 0.46
+  }
+ }
+]

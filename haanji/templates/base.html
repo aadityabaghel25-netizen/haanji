@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}Haanji{% endblock %}</title>
+<style>
+  :root {
+    --bg: #fbf7f1; --card: #ffffff; --ink: #1d1a16; --muted: #6f665b; --line: #ece4d8; --soft: #f5eee4;
+    --brand: #d9480f; --brand-2: #f76707; --brand-soft: #fff0e6; --ok: #2b8a3e; --ok-soft: #ebfbee; --warn: #b35c00; --warn-soft: #fff4e0;
+    --bad: #c92a2a; --bad-soft: #fff0f0; --ai: #5f3dc4; --ai-soft: #f3f0ff; --radius: 16px;
+    --shadow: 0 1px 2px rgba(60,40,20,.06), 0 8px 24px rgba(60,40,20,.06);
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, system-ui, sans-serif; }
+  a { color: var(--brand); }
+  header.top { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 28px; border-bottom: 1px solid var(--line); background: rgba(255,255,255,.7); backdrop-filter: blur(8px); position: sticky; top: 0; z-index: 5; }
+  .logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 20px; letter-spacing: -.02em; text-decoration: none; color: var(--ink); }
+  .logo .mark { width: 34px; height: 34px; border-radius: 10px; background: linear-gradient(135deg, var(--brand), var(--brand-2)); display: grid; place-items: center; color: #fff; font-size: 18px; }
+  .logo small { display: block; font-size: 12px; font-weight: 500; color: var(--muted); letter-spacing: 0; }
+  nav a { margin-left: 18px; text-decoration: none; color: var(--muted); font-weight: 600; font-size: 14px; }
+  nav a.on { color: var(--ink); }
+  main { max-width: 1240px; margin: 0 auto; padding: 24px 28px 60px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); padding: 20px; }
+  .muted { color: var(--muted); } .small { font-size: 13px; }
+  .badge { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 650; padding: 2px 9px; border-radius: 999px; background: var(--soft); color: var(--muted); white-space: nowrap; }
+  .badge.ok { background: var(--ok-soft); color: var(--ok); } .badge.warn { background: var(--warn-soft); color: var(--warn); }
+  .badge.bad { background: var(--bad-soft); color: var(--bad); } .badge.ai { background: var(--ai-soft); color: var(--ai); } .badge.brand { background: var(--brand-soft); color: var(--brand); }
+  button, .btn { font: inherit; font-weight: 650; border: 0; border-radius: 12px; padding: 10px 16px; background: var(--brand); color: #fff; cursor: pointer; }
+  button.secondary { background: var(--soft); color: var(--ink); }
+  button:disabled { opacity: .45; cursor: default; }
+  .mono { font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; font-size: 12.5px; }
+  @media (max-width: 900px) { header.top { padding: 12px 16px; } main { padding: 16px; } nav a { margin-left: 10px; } }
+</style>
+{% block head %}{% endblock %}
+</head>
+<body>
+<header class="top">
+  <a class="logo" href="/"><span class="mark">हाँ</span><span>Haanji<small>Hinglish voice helpline for small online sellers</small></span></a>
+  <nav><a href="/" class="{{ 'on' if request.url.path == '/' }}">Helpline</a><a href="/seller" class="{{ 'on' if request.url.path.startswith('/seller') }}">Seller dashboard</a></nav>
+</header>
+<main>{% block content %}{% endblock %}</main>
+</body>
+</html>

@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block title %}Seller dashboard · Haanji{% endblock %}
+{% block head %}
+<style>
+  .head { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; margin-bottom: 18px; }
+  .head h1 { margin: 0; font-size: 26px; letter-spacing: -.02em; }
+  .tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 18px; }
+  @media (max-width: 900px) { .tiles { grid-template-columns: repeat(2, 1fr); } }
+  .tile .n { font-size: 30px; font-weight: 800; letter-spacing: -.02em; }
+  .tile .l { font-size: 13px; color: var(--muted); }
+  h2 { font-size: 17px; margin: 0 0 12px; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th { text-align: left; font-size: 12px; color: var(--muted); font-weight: 650; text-transform: uppercase; letter-spacing: .05em; padding: 8px 10px; border-bottom: 1px solid var(--line); }
+  td { padding: 12px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  tr.risk td { background: #fffafa; }
+  .actions { display: flex; gap: 6px; } .actions button { padding: 7px 12px; font-size: 13px; }
+  details.call { border-top: 1px solid var(--line); padding: 10px 0; }
+  details.call summary { cursor: pointer; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  .t { display: grid; grid-template-columns: 90px 1fr; gap: 4px 12px; font-size: 13.5px; margin: 10px 0 4px; }
+  .t .w { font-weight: 700; color: var(--muted); font-size: 12px; text-transform: uppercase; padding-top: 2px; }
+  .table-wrap { overflow-x: auto; }
+</style>
+{% endblock %}
+{% block content %}
+<div class="head">
+  <div><h1>{{ shop.name }} · seller dashboard</h1><div class="muted">Every call, transcribed. Nothing changes an order until you approve it here.</div></div>
+  <form method="post" action="/seller/reset" onsubmit="return confirm('Clear all demo calls and tickets?')"><button class="secondary">Clear demo data</button></form>
+</div>
+<div class="tiles">
+  <div class="card tile"><div class="n">{{ d.stats.calls }}</div><div class="l">calls answered</div></div>
+  <div class="card tile"><div class="n">{{ d.stats.waiting }}</div><div class="l">tickets waiting for you</div></div>
+  <div class="card tile"><div class="n" style="color:var(--bad)">{{ d.stats.risk }}</div><div class="l">chargeback risks caught early</div></div>
+  <div class="card tile"><div class="n">{{ '%.2f' % d.stats.stt_median if d.stats.stt_median is not none else '–' }}s</div><div class="l">median Gnani speech-to-text time</div></div>
+</div>
+
+<div class="card" style="margin-bottom:18px">
+  <h2>Tickets</h2>
+  {% if d.tickets %}
+  <div class="table-wrap"><table>
+    <tr><th>#</th><th>Request</th><th>Order</th><th>Status</th><th></th></tr>
+    {% for t in d.tickets %}
+    <tr class="{{ 'risk' if t.risk }}">
+      <td class="mono">{{ t.id }}</td>
+      <td><b>{{ t.summary }}</b>{% if t.risk %}<div class="small" style="color:var(--bad);margin-top:3px">⚠ {{ t.risk }}</div>{% endif %}
+        <div class="small muted">From call {{ t.call_id }} · {{ t.created[:16].replace('T', ' ') }} UTC</div></td>
+      <td>{% if t.order_id %}{% set o = shop.orders[t.order_id] %}<span class="mono">{{ t.order_id }}</span><div class="small muted">{{ o.item }} · ₹{{ o.amount }}</div>{% endif %}</td>
+      <td>{% if t.status == 'waiting' %}<span class="badge warn">Waiting for you</span>{% elif t.status == 'approved' %}<span class="badge ok">Approved</span>{% else %}<span class="badge">Declined</span>{% endif %}</td>
+      <td>{% if t.status == 'waiting' %}<form method="post" action="/seller/tickets/{{ t.id }}" class="actions">
+        <button name="action" value="approve">Approve</button><button class="secondary" name="action" value="decline">Decline</button></form>{% endif %}</td>
+    </tr>
+    {% endfor %}
+  </table></div>
+  {% else %}<p class="muted">No tickets yet. Make a call on the <a href="/">helpline</a>.</p>{% endif %}
+</div>
+
+<div class="card">
+  <h2>Calls</h2>
+  {% for c in d.calls %}
+  <details class="call" {% if loop.first %}open{% endif %}>
+    <summary><b>{{ c.who }}</b><span class="mono muted">{{ c.phone }}</span><span class="badge">{{ c.turns | selectattr('who', 'equalto', 'caller') | list | length }} turns</span>
+      {% for i in c.turns | map(attribute='intent') | unique %}{% if i not in ('greeting', 'yes', 'no', 'bye', 'silence') %}<span class="badge brand">{{ i }}</span>{% endif %}{% endfor %}
+      <span class="small muted">{{ c.started[:16].replace('T', ' ') }} UTC</span></summary>
+    <div class="t">
+      {% for t in c.turns %}<div class="w">{{ 'Caller' if t.who == 'caller' else 'Haanji' }}</div><div>{{ t.text }}{% if t.stt_s %} <span class="badge">Gnani STT {{ t.stt_s }}s</span>{% endif %}</div>{% endfor %}
+    </div>
+  </details>
+  {% else %}<p class="muted">No calls yet.</p>{% endfor %}
+</div>
+{% endblock %}
