@@ -3,6 +3,10 @@
 **Built on Gnani AI: Prisma v3.0 speech-to-text and Timbre v3.0 text-to-speech.**
 Entry for the Gnani AI Great Indian AI Internship Challenge, by Aaditya Baghel (solo).
 
+![Haanji answering a call](docs/screenshot.jpg)
+
+Demo video (59 s): see the LinkedIn post, or `demo/haanji-demo.mp4` locally.
+
 A small Instagram or website seller gets the same five calls all day: *"mera parcel kahan hai?"*, *"mila hi nahi"*,
 *"return karna hai"*, *"cancel kar do"*, *"galat size aaya"*. They come in Hinglish, on noisy phone lines, often while
 the seller is packing orders. Missed calls become 1-star reviews, and an unanswered *"mila hi nahi"* can turn into a

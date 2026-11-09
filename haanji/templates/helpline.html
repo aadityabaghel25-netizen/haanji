@@ -2,76 +2,153 @@
 {% block title %}Helpline · Haanji{% endblock %}
 {% block head %}
 <style>
-  .layout { display: grid; grid-template-columns: 380px minmax(0, 1fr); gap: 22px; align-items: start; }
-  .phone { position: sticky; top: 84px; }
-  @media (max-width: 900px) { .layout { grid-template-columns: 1fr; } .phone { position: static; } }
-  .shopline { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
-  .shopline h2 { margin: 0; font-size: 18px; }
-  label.f { display: block; font-size: 12.5px; font-weight: 650; color: var(--muted); margin: 12px 0 5px; }
+  main { max-width: 1400px; }
+  .layout { display: grid; grid-template-columns: 290px 330px minmax(0, 1fr); gap: 20px; align-items: start; }
+  @media (max-width: 1180px) { .layout { grid-template-columns: 330px minmax(0, 1fr); } .setup { grid-column: 1 / -1; order: 3; } }
+  @media (max-width: 760px) { .layout { grid-template-columns: 1fr; } .setup { order: 0; } }
+
+  /* ---- setup column */
+  .setup { display: flex; flex-direction: column; gap: 12px; }
+  .setup .card { padding: 16px; }
+  .setup h3 { margin: 0 0 4px; font-size: 14px; letter-spacing: .02em; }
+  label.f { display: block; font-size: 12px; font-weight: 700; color: var(--muted); margin: 12px 0 5px; text-transform: uppercase; letter-spacing: .05em; }
   select, input[type=text] { width: 100%; font: inherit; padding: 10px 12px; border: 1px solid var(--line); border-radius: 12px; background: #fff; }
-  .toggle { display: flex; gap: 8px; align-items: center; font-size: 13.5px; margin-top: 12px; }
-  .dial { display: flex; gap: 10px; margin-top: 16px; }
-  .dial button { flex: 1; padding: 13px; font-size: 15px; }
-  #hangup { background: var(--bad); }
-  .mic { width: 100%; margin-top: 14px; padding: 18px; font-size: 16px; border-radius: 14px; background: var(--ink); display: flex; gap: 10px; align-items: center; justify-content: center; }
-  .mic.rec { background: var(--bad); animation: pulse 1.2s infinite; }
-  @keyframes pulse { 50% { box-shadow: 0 0 0 8px rgba(201,42,42,.15); } }
-  .samples { margin-top: 16px; padding-top: 14px; border-top: 1px dashed var(--line); }
-  .samples .chip { display: block; width: 100%; text-align: left; margin-top: 7px; background: var(--brand-soft); color: var(--ink); font-weight: 550; font-size: 13.5px; padding: 9px 12px; border-radius: 11px; }
+  .switch { display: flex; gap: 10px; align-items: center; margin-top: 12px; font-size: 13.5px; cursor: pointer; }
+  .switch input { appearance: none; width: 38px; height: 22px; border-radius: 999px; background: #ddd3c5; position: relative; cursor: pointer; transition: background .2s; flex: none; }
+  .switch input::after { content: ""; position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; border-radius: 50%; background: #fff; transition: transform .2s; box-shadow: 0 1px 2px rgba(0,0,0,.2); }
+  .switch input:checked { background: var(--brand); } .switch input:checked::after { transform: translateX(16px); }
+  .samples .chip { display: flex; gap: 9px; align-items: flex-start; width: 100%; text-align: left; margin-top: 7px; background: var(--brand-soft); color: var(--ink); font-weight: 550; font-size: 13.5px; padding: 7px 10px; border-radius: 11px; line-height: 1.3; }
+  .samples .chip .pl { flex: none; width: 22px; height: 22px; border-radius: 50%; background: var(--brand); color: #fff; display: grid; place-items: center; font-size: 10px; margin-top: 1px; }
   .samples .chip:hover:not(:disabled) { background: #ffe3d1; }
   .typed { display: flex; gap: 8px; margin-top: 12px; } .typed button { flex: none; }
-  .status { margin-top: 12px; font-size: 13px; color: var(--muted); min-height: 20px; display: flex; gap: 8px; align-items: center; }
-  .dot { width: 9px; height: 9px; border-radius: 50%; background: #c9bfb2; flex: none; }
-  .dot.live { background: var(--ok); box-shadow: 0 0 0 4px var(--ok-soft); }
-  .convo { min-height: 520px; height: calc(100vh - 124px); overflow-y: auto; display: flex; flex-direction: column; gap: 14px; scroll-behavior: smooth; }
-  @media (max-width: 900px) { .convo { height: auto; overflow: visible; } }
-  .convo-head { position: sticky; top: -20px; background: var(--card); padding: 4px 0 10px; margin-top: -4px; z-index: 2; }
-  .convo-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
-  .convo-head h2 { margin: 0; font-size: 18px; }
-  .empty { margin: auto; text-align: center; color: var(--muted); max-width: 440px; padding: 40px 0; }
-  .empty .big { font-size: 46px; }
-  .msg { max-width: 82%; padding: 12px 15px; border-radius: 16px; position: relative; animation: rise .25s ease; }
-  @keyframes rise { from { opacity: 0; transform: translateY(6px); } }
-  .msg.caller { align-self: flex-end; background: var(--ink); color: #fff; border-bottom-right-radius: 5px; }
-  .msg.agent { align-self: flex-start; background: var(--soft); border-bottom-left-radius: 5px; }
-  .msg .who { font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; opacity: .65; margin-bottom: 3px; display: flex; gap: 8px; align-items: center; }
+  .order h3 { display: flex; justify-content: space-between; align-items: center; }
+  .order dl { display: grid; grid-template-columns: 80px 1fr; gap: 3px 10px; margin: 8px 0 0; font-size: 13px; }
+  .order dt { color: var(--muted); } .order dd { margin: 0; font-weight: 600; }
+  .order.flash { animation: flash 1.2s ease; }
+  @keyframes flash { 0% { box-shadow: 0 0 0 0 rgba(247,103,7,.5); } 100% { box-shadow: 0 0 0 14px rgba(247,103,7,0); } }
+
+  /* ---- the phone */
+  .device { position: sticky; top: 84px; background: linear-gradient(170deg, #26211c 0%, #120f0c 100%); color: #fff; border-radius: 40px; padding: 18px 18px 22px;
+            box-shadow: 0 30px 60px rgba(40,25,10,.28), inset 0 0 0 2px rgba(255,255,255,.06); min-height: 600px; display: flex; flex-direction: column; }
+  .notch { width: 110px; height: 22px; border-radius: 0 0 14px 14px; background: #000; margin: -18px auto 10px; }
+  .dev-top { display: flex; justify-content: space-between; font-size: 12px; opacity: .65; padding: 0 8px; }
+  .who-call { text-align: center; margin-top: 26px; }
+  .avatar { width: 92px; height: 92px; border-radius: 50%; margin: 0 auto 12px; display: grid; place-items: center; font-size: 34px; font-weight: 800;
+            background: linear-gradient(135deg, #f76707, #d9480f); box-shadow: 0 0 0 6px rgba(247,103,7,.18); transition: box-shadow .3s; }
+  .avatar.unknown { background: linear-gradient(135deg, #6f665b, #45403a); box-shadow: 0 0 0 6px rgba(255,255,255,.08); }
+  .device.talking .avatar { animation: ring 1.4s infinite; }
+  @keyframes ring { 50% { box-shadow: 0 0 0 14px rgba(247,103,7,.10); } }
+  .who-call .name { font-size: 22px; font-weight: 750; letter-spacing: -.01em; }
+  .who-call .num { font-size: 13px; opacity: .6; margin-top: 2px; font-variant-numeric: tabular-nums; }
+  .timer { margin-top: 8px; font-size: 15px; font-variant-numeric: tabular-nums; color: #8ce99a; min-height: 22px; }
+  .dest { margin-top: 18px; text-align: center; font-size: 12.5px; opacity: .7; }
+  canvas#viz { display: block; width: 100%; height: 70px; margin: 18px 0 6px; }
+  .speaker { text-align: center; font-size: 13px; min-height: 20px; opacity: .85; }
+  .controls { margin-top: auto; display: flex; justify-content: center; gap: 22px; align-items: center; padding-top: 18px; }
+  .round { width: 66px; height: 66px; border-radius: 50%; padding: 0; display: grid; place-items: center; font-size: 26px; transition: transform .1s, background .2s; }
+  .round:active:not(:disabled) { transform: scale(.94); }
+  #call { background: #2f9e44; } #hangup { background: #e03131; }
+  #mic { width: 78px; height: 78px; background: rgba(255,255,255,.12); font-size: 30px; }
+  #mic.rec { background: #e03131; animation: pulse 1.2s infinite; }
+  @keyframes pulse { 50% { box-shadow: 0 0 0 10px rgba(224,49,49,.22); } }
+  .round:disabled { opacity: .3; }
+  .ctl-label { display: flex; justify-content: center; gap: 22px; font-size: 11.5px; opacity: .55; margin-top: 8px; }
+  .ctl-label span { width: 66px; text-align: center; } .ctl-label span.m { width: 78px; }
+  .status { margin-top: 14px; font-size: 12.5px; text-align: center; opacity: .75; min-height: 18px; }
+
+  /* ---- conversation */
+  .convo { padding: 0; height: calc(100vh - 124px); min-height: 560px; display: flex; flex-direction: column; overflow: hidden; }
+  @media (max-width: 760px) { .convo { height: auto; } }
+  .pipe { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 14px; border-bottom: 1px solid var(--line); background: #fffdfa; }
+  .stage { border: 1px solid var(--line); border-radius: 12px; padding: 9px 11px; background: #fff; transition: all .25s; }
+  .stage .s1 { font-size: 11px; font-weight: 750; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); display: flex; justify-content: space-between; }
+  .stage .s2 { font-size: 13.5px; font-weight: 650; margin-top: 2px; }
+  .stage .s3 { font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; min-height: 18px; }
+  .stage.on { border-color: var(--brand-2); background: var(--brand-soft); box-shadow: 0 0 0 3px rgba(247,103,7,.12); }
+  .stage.on .s1 { color: var(--brand); }
+  .stage.done .s1::after { content: "✓"; color: var(--ok); }
+  .msgs { flex: 1; overflow-y: auto; padding: 18px 18px 26px; display: flex; flex-direction: column; gap: 14px; scroll-behavior: smooth; }
+  .empty { margin: auto; text-align: center; color: var(--muted); max-width: 460px; padding: 30px 0; }
+  .empty .big { font-size: 52px; font-weight: 800; color: var(--ink); letter-spacing: -.02em; }
+  .sep { align-self: center; }
+  .row { display: flex; gap: 10px; align-items: flex-end; animation: rise .28s ease; }
+  .row.caller { flex-direction: row-reverse; }
+  @keyframes rise { from { opacity: 0; transform: translateY(8px); } }
+  .av { width: 32px; height: 32px; border-radius: 50%; flex: none; display: grid; place-items: center; font-size: 13px; font-weight: 800; color: #fff; background: linear-gradient(135deg, #f76707, #d9480f); }
+  .row.caller .av { background: #1d1a16; }
+  .msg { max-width: 78%; padding: 12px 15px; border-radius: 18px; }
+  .msg.caller { background: #1d1a16; color: #fff; border-bottom-right-radius: 6px; }
+  .msg.agent { background: #fff; border: 1px solid var(--line); border-bottom-left-radius: 6px; box-shadow: 0 2px 10px rgba(60,40,20,.05); }
+  .msg .who { font-size: 11px; font-weight: 750; text-transform: uppercase; letter-spacing: .06em; opacity: .6; margin-bottom: 4px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
   .msg .meta { margin-top: 8px; display: flex; gap: 6px; flex-wrap: wrap; }
   .msg.caller .badge { background: rgba(255,255,255,.14); color: #fff; }
-  .facts { margin-top: 8px; font-size: 12.5px; color: var(--muted); border-left: 3px solid var(--brand-2); padding: 2px 0 2px 10px; }
-  .facts b { color: var(--ink); }
-  .ticket { margin-top: 8px; padding: 9px 12px; border-radius: 12px; background: #fff; border: 1px solid var(--line); font-size: 13px; }
-  .ticket.risk { border-color: #f4c7c7; background: var(--bad-soft); }
-  .typing { align-self: flex-start; color: var(--muted); font-size: 13px; }
-  .how { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; font-size: 12.5px; color: var(--muted); }
-  .how .step { background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 3px 10px; }
+  .msg.caller .badge.g { background: rgba(140,233,154,.18); color: #b2f2bb; }
+  .facts { margin-top: 10px; font-size: 12.5px; color: var(--muted); background: var(--soft); border-radius: 10px; padding: 8px 10px; }
+  .facts b { color: var(--ink); display: block; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 2px; }
+  .ticket { margin-top: 10px; padding: 10px 12px; border-radius: 12px; background: #fff; border: 1px dashed #d8c9b5; font-size: 13px; }
+  .ticket.risk { border: 1px solid #f4c7c7; background: var(--bad-soft); }
+  .typing { align-self: flex-start; color: var(--muted); font-size: 13px; display: flex; gap: 8px; align-items: center; padding-left: 42px; }
+  .dots span { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--brand-2); margin: 0 1px; animation: b 1s infinite; }
+  .dots span:nth-child(2) { animation-delay: .15s; } .dots span:nth-child(3) { animation-delay: .3s; }
+  @keyframes b { 50% { transform: translateY(-4px); opacity: .5; } }
 </style>
 {% endblock %}
 {% block content %}
 <div class="layout">
-  <div class="card phone">
-    <div class="shopline"><h2>📞 {{ shop.name }}</h2><span class="badge brand">{{ shop.city }}</span></div>
-    <div class="small muted">A made-up shop. Call its helpline as one of its customers, speak Hinglish, and Haanji answers from the shop's own records.</div>
-    <label class="f" for="caller">Calling from</label>
-    <select id="caller">
-      {% for c in samples %}<option value="{{ loop.index0 }}" data-phone="{{ c.phone }}">{{ c.label }} · {{ c.phone }}</option>{% endfor %}
-    </select>
-    <label class="toggle"><input type="checkbox" id="noisy"> Noisy phone line (8 kHz, background noise)</label>
-    <div class="dial"><button id="call">Call</button><button id="hangup" disabled>Hang up</button></div>
-    {% if voice %}
-    <button class="mic" id="mic" disabled>🎙️ <span id="mic-label">Tap to speak</span></button>
-    <div class="samples"><div class="small muted"><b>No microphone?</b> Play this caller's lines (voiced by Gnani, heard by Gnani):</div><div id="sample-list"></div></div>
-    {% else %}
-    <div class="small" style="margin-top:12px;padding:10px;border-radius:10px;background:var(--warn-soft)">Offline mode: add a Gnani key to <span class="mono">.env</span> for voice. You can still type.</div>
-    {% endif %}
-    <form class="typed" id="typed"><input type="text" id="typed-text" placeholder="…or type in Hinglish" autocomplete="off" disabled><button class="secondary" disabled>Send</button></form>
-    <div class="status"><span class="dot" id="dot"></span><span id="status">Not on a call.</span></div>
+  <div class="setup">
+    <div class="card">
+      <h3>☎️ Call {{ shop.name }}</h3>
+      <div class="small muted">A made-up {{ shop.city }} shop.</div>
+      <label class="f" for="caller">Calling as</label>
+      <select id="caller">
+        {% for c in samples %}<option value="{{ loop.index0 }}" data-phone="{{ c.phone }}" data-label="{{ c.label }}">{{ c.label }}</option>{% endfor %}
+      </select>
+      <label class="switch"><input type="checkbox" id="noisy"> Noisy phone line <span class="muted small">(8 kHz + noise)</span></label>
+      {% if voice %}
+      <div class="samples"><label class="f">Caller's lines <span style="text-transform:none;letter-spacing:0;font-weight:500">· voiced by Gnani</span></label><div id="sample-list"></div></div>
+      {% else %}
+      <div class="small" style="margin-top:12px;padding:10px;border-radius:10px;background:var(--warn-soft)">Offline mode: add a Gnani key to <span class="mono">.env</span> for voice. You can still type.</div>
+      {% endif %}
+      <form class="typed" id="typed"><input type="text" id="typed-text" placeholder="…or type in Hinglish" autocomplete="off" disabled><button class="secondary" disabled>Send</button></form>
+    </div>
+    <div class="card order" id="order-card">
+      <h3>🧾 Order on file <span class="badge" id="order-id">none yet</span></h3>
+      <div class="small muted" id="order-empty">The record Haanji answers from appears here.</div>
+      <dl id="order-dl" hidden></dl>
+    </div>
   </div>
 
-  <div class="card convo" id="convo">
-    <div class="convo-head"><h2>Live call</h2>
-      <div class="how"><span class="step">🎙️ Gnani {{ stt_model }} hears</span>→<span class="step">⚙️ Code answers from records</span>→<span class="step">🔊 Gnani {{ tts_model }} speaks ({{ agent_voice }})</span></div></div>
-    <div class="empty" id="empty"><div class="big">हाँ जी?</div><p>Press <b>Call</b>. Ask where your parcel is, say it never arrived, ask for a return or cancel. In Hindi, English or both.</p>
-      <p class="small">No money moves on a call. Returns, cancels and complaints become tickets the seller approves.</p></div>
+  <div class="device" id="device">
+    <div class="notch"></div>
+    <div class="dev-top"><span>{{ shop.name }} helpline</span><span>📶 5G</span></div>
+    <div class="who-call">
+      <div class="avatar" id="avatar">R</div>
+      <div class="name" id="who-name">—</div>
+      <div class="num" id="who-num"></div>
+      <div class="timer" id="timer"></div>
+    </div>
+    <div class="dest" id="dest">Calling {{ shop.name }} · answered by Haanji</div>
+    <canvas id="viz" width="600" height="140"></canvas>
+    <div class="speaker" id="speaker"></div>
+    <div class="controls">
+      <button class="round" id="hangup" disabled title="Hang up"><span style="display:inline-block;transform:rotate(135deg)">📞</span></button>
+      {% if voice %}<button class="round" id="mic" disabled title="Tap to speak">🎙️</button>{% endif %}
+      <button class="round" id="call" title="Call">📞</button>
+    </div>
+    <div class="ctl-label"><span>End</span>{% if voice %}<span class="m" id="mic-label">Speak</span>{% endif %}<span>Call</span></div>
+    <div class="status"><span id="dot"></span><span id="status">Not on a call.</span></div>
+  </div>
+
+  <div class="card convo">
+    <div class="pipe">
+      <div class="stage" id="st-hear"><div class="s1">1 · Hear</div><div class="s2">Gnani {{ stt_model }}</div><div class="s3" id="st-hear-t">speech → Hinglish text</div></div>
+      <div class="stage" id="st-think"><div class="s1">2 · Answer</div><div class="s2">Code + shop records</div><div class="s3" id="st-think-t">no guessing, no AI writing</div></div>
+      <div class="stage" id="st-speak"><div class="s1">3 · Speak</div><div class="s2">Gnani {{ tts_model }}</div><div class="s3" id="st-speak-t">voice: {{ agent_voice }}</div></div>
+    </div>
+    <div class="msgs" id="convo">
+      <div class="empty" id="empty"><div class="big">हाँ जी?</div><p>Press <b>Call</b>, then ask where your parcel is, say it never arrived, or ask for a return or cancel. In Hindi, English or both.</p>
+        <p class="small">No money moves on a call. Returns, cancels and complaints become tickets the seller approves.</p></div>
+    </div>
   </div>
 </div>
 <script>window.HAANJI = { samples: {{ samples | tojson }}, voice: {{ 'true' if voice else 'false' }} };</script>

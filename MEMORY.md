@@ -9,7 +9,9 @@
 - **2026-11-09:** Built in one day. Helpline (browser phone, mic → 16 kHz WAV, sample callers, noisy-line toggle), seller
   dashboard (tickets, chargeback-risk flags, transcripts), 21 offline tests, live eval: held-out 86% text / 82% clean /
   68% phone line (10 dB), Gnani STT median 0.53 s.
-- **Next:** public GitHub repo, 60-second demo video, LinkedIn/X post (needed before submitting), submission form.
+- UI redesign: 3 columns (call setup + order on file, phone with live waveform and timer, conversation with Hear/Answer/Speak strip).
+- Demo video `demo/haanji-demo.mp4` (59 s, gitignored), real call recorded with Playwright, audio rebuilt from the clips the page played.
+- **Next:** public GitHub repo, LinkedIn/X post (needed before submitting), submission form. Answers in `docs/SUBMISSION.md`.
 
 ## Decisions
 | Date | Decision |

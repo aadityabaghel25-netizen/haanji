@@ -112,8 +112,16 @@ class Service:
             self.db.execute("UPDATE calls SET state=?, ended=? WHERE id=?", (json.dumps(state), now() if reply.end else None, call_id))
             self.db.commit()
         return {"heard": heard, "stt_s": stt_s, "reply": reply.text, "audio": key, "tts_s": tts_s, "intent": reply.intent,
-                "order_id": reply.order_id, "facts": reply.facts, "ended": reply.end,
+                "order_id": reply.order_id, "facts": reply.facts, "ended": reply.end, "order": self.order_card(reply.order_id),
                 "ticket": {"id": ticket_id, "summary": reply.ticket.summary, "risk": reply.ticket.risk} if reply.ticket else None}
+
+    def order_card(self, order_id: str | None) -> dict | None:
+        """The record the answer came from, for the 'order on file' card (no customer name, phone or address)."""
+        o = self.shop.orders.get(order_id) if order_id else None
+        if not o:
+            return None
+        keys = ("id", "item", "amount", "status", "courier", "awb", "shipped_on", "expected_on", "delivered_on", "proof", "last_scan")
+        return {k: o.get(k) for k in keys}
 
     def end_call(self, call_id: int) -> None:
         with self.lock:
