@@ -12,9 +12,13 @@ Demo video: `demo/haanji-demo.mp4` (59 s, 1080p). Upload it to the post directly
 
 **The problem you are solving:**
 Small online sellers in India (Instagram shops, D2C websites) get the same calls all day, in Hinglish, on noisy phone
-lines: "mera parcel kahan hai?", "mila hi nahi", "return karna hai", "cancel kar do". A one- or two-person shop can't
-pick up every call. Missed calls become bad reviews, and an unanswered "mila hi nahi" can turn into a chargeback weeks
-later. Generic chatbots are risky here: they guess delivery dates and promise refunds the seller never agreed to.
+lines: "mera parcel kahan hai?", "mila hi nahi", "return karna hai", "cancel kar do". Indians prefer to call: 76% favour
+business calls (Truecaller × Tata Tele Business Services). But a one- or two-person shop can't pick up: studies find
+28%–62% of calls to small businesses go unanswered. "Where is my order?" alone is 20%–50% of e-commerce support
+contacts, and cash on delivery (about 60% of Indian orders) comes back undelivered about 26% of the time (Shipway FY25).
+An unanswered "mila hi nahi" can become a chargeback: in apparel, "not received" is 37% of chargebacks (Chargeflow).
+Generic chatbots are risky here: they guess delivery dates and promise refunds the seller never agreed to.
+Sources: docs/PROBLEM.md.
 
 **Who will use it:** Small online sellers and their customers. The customer calls and talks naturally in Hindi, English
 or both; the seller gets every call transcribed on a dashboard and approves anything that moves money.
