@@ -177,7 +177,7 @@ def respond(text: str, state: dict, shop: Shop, caller: dict | None) -> Reply:
     if order_id is None:
         state.update(pending="order_number", wanted=intent)
         if caller and len(mine) > 1:
-            names = " ya ".join(shop.orders[o]["item"] for o in mine[:3])
+            names = " ya ".join(shop.orders[o].get("short") or shop.orders[o]["item"] for o in mine[:3])
             return Reply(f"Aapke {len(mine)} orders hain: {names}. Kaunse order ke baare mein baat kar rahe hain?", intent)
         return Reply("Zaroor. Kripya apna chaar ank ka order number bataiye. Yeh order confirmation SMS mein likha hai.", intent)
     state["order_id"] = order_id
@@ -192,8 +192,8 @@ def respond(text: str, state: dict, shop: Shop, caller: dict | None) -> Reply:
 
 def _answer(intent: str, o: dict, shop: Shop, state: dict, known_caller: bool) -> Reply:
     today = shop.today
-    oid, item = o["id"], o["item"]
-    facts = [f"Order {oid}: {item}, ₹{o['amount']}, status {o['status']}"]
+    oid, item = o["id"], o.get("short") or o["item"]      # spoken: "bedsheet"; the full name stays in the facts
+    facts = [f"Order {oid}: {o['item']}, ₹{o['amount']}, status {o['status']}"]
     if o.get("courier"):
         facts.append(f"{o['courier']} AWB {o['awb']}")
     delivered = o["status"] == "delivered"

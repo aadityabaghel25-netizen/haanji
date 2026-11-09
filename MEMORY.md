@@ -12,7 +12,8 @@
 - UI redesign: 3 columns (call setup + order on file, phone with live waveform and timer, conversation with Hear/Answer/Speak strip).
 - Demo video `demo/haanji-demo.mp4` (59 s, gitignored), real call recorded with Playwright, audio rebuilt from the clips the page played.
 - Public repo: https://github.com/aadityabaghel25-netizen/haanji (pushed 2026-11-09).
-- **Next:** LinkedIn/X post (needed before submitting), submission form. Answers in `docs/SUBMISSION.md`.
+- Round 2 (09 Nov): shorter spoken replies (short item names), seller's spoken Hinglish summary (`/seller/summary`), redesigned seller dashboard, video re-recorded (59.5 s, opens with sourced data from docs/PROBLEM.md). Posting on X; Gnani's handle is @GnaniAi.
+- **Next:** X post (needed before submitting), submission form. Answers in `docs/SUBMISSION.md`.
 
 ## Decisions
 | Date | Decision |

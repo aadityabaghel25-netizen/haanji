@@ -11,18 +11,18 @@
     {"id": "C4", "name": "Neha", "full_name": "Neha Gupta", "phone": "+91 90000 00004", "city": "Indore"}
   ],
   "orders": [
-    {"id": "4821", "customer": "C1", "item": "cotton kurti", "keywords": ["kurti", "kurta"], "amount": 1299, "paid_on": "{today-4}",
+    {"id": "4821", "short": "kurti", "customer": "C1", "item": "cotton kurti", "keywords": ["kurti", "kurta"], "amount": 1299, "paid_on": "{today-4}",
      "status": "in_transit", "courier": "Delhivery", "awb": "1490811234567", "shipped_on": "{today-2}", "expected_on": "{today+2}",
      "last_scan": "Gurgaon hub"},
-    {"id": "4822", "customer": "C2", "item": "block-print bedsheet", "keywords": ["bedsheet", "chadar", "chaadar", "bed sheet"], "amount": 2499,
+    {"id": "4822", "short": "bedsheet", "customer": "C2", "item": "block-print bedsheet", "keywords": ["bedsheet", "chadar", "chaadar", "bed sheet"], "amount": 2499,
      "paid_on": "{today-12}", "status": "delivered", "courier": "Blue Dart", "awb": "81234567890", "shipped_on": "{today-10}",
      "delivered_on": "{today-6}", "received_by": "Rahul", "proof": "OTP verified at the door"},
-    {"id": "4823", "customer": "C3", "item": "chanderi saree", "keywords": ["saree", "sari", "sadi"], "amount": 3499, "paid_on": "{today-8}",
+    {"id": "4823", "short": "saree", "customer": "C3", "item": "chanderi saree", "keywords": ["saree", "sari", "sadi"], "amount": 3499, "paid_on": "{today-8}",
      "status": "delivered", "courier": "Ekart", "awb": "FMPC1234567890", "shipped_on": "{today-6}", "delivered_on": "{today-3}",
      "received_by": "Sameer", "proof": "OTP verified at the door"},
-    {"id": "4824", "customer": "C4", "item": "bandhani dupatta", "keywords": ["dupatta", "chunni"], "amount": 899, "paid_on": "{today-1}",
+    {"id": "4824", "short": "dupatta", "customer": "C4", "item": "bandhani dupatta", "keywords": ["dupatta", "chunni"], "amount": 899, "paid_on": "{today-1}",
      "status": "packed", "courier": null, "awb": null, "shipped_on": null, "expected_on": "{today+5}"},
-    {"id": "4825", "customer": "C1", "item": "cushion covers", "keywords": ["cushion", "cover"], "amount": 699, "paid_on": "{today-20}",
+    {"id": "4825", "short": "cushion covers", "customer": "C1", "item": "cushion covers", "keywords": ["cushion", "cover"], "amount": 699, "paid_on": "{today-20}",
      "status": "delivered", "courier": "Delhivery", "awb": "1490819876543", "shipped_on": "{today-18}", "delivered_on": "{today-15}",
      "received_by": "Priya", "proof": "OTP verified at the door"}
   ]

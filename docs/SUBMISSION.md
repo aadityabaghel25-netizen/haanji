@@ -4,7 +4,7 @@ Deadline: **10 Nov 2026, 11:59 PM IST.** Order of steps: push the repo → post 
 form with the post links. The post must be live before you submit. Shortlisting is by verified engagement on the
 nominated posts, so post as early as you can.
 
-Demo video: `demo/haanji-demo.mp4` (59 s, 1080p). Upload it to the post directly (native video gets more reach than a link).
+Demo video: `demo/haanji-demo.mp4` (59.5 s, 1080p): real data → a live call over a noisy line → the seller's spoken summary → approval. Upload it to the post directly (native video gets more reach than a link).
 
 ## Project details
 
@@ -79,14 +79,25 @@ Code: https://github.com/aadityabaghel25-netizen/haanji
 >
 > #GnaniAI #GreatIndianAIInternshipChallenge #VoiceAI #Hinglish #BuildInPublic
 
-Tag Gnani AI's company page in the post (type @Gnani and pick the page).
+Tag Gnani AI's company page in the post (type @Gnani and pick the page). On X the handle is @GnaniAi (from gnani.ai).
 
-## X post (paste, attach the video)
+## X post (paste, attach `demo/haanji-demo.mp4`)
 
-> Built Haanji: a Hinglish voice helpline for small online sellers, on @GnaniAI Prisma v3.0 + Timbre v3.0.
-> "Mera parcel kahan hai?" → answered from the shop's records in seconds. No money moves without the seller's click.
-> 82% held-out accuracy on clean audio, 68% on a noisy phone line.
-> github.com/aadityabaghel25-netizen/haanji
-> #GnaniAI #GreatIndianAIInternshipChallenge
+274 of 280 characters (X counts the link as 23).
 
-(Check Gnani's X handle before posting.)
+```
+Small sellers miss calls all day. I built Haanji: a Hinglish voice helpline on @GnaniAi Prisma + Timbre.
+
+Answers from shop records, flags "mila hi nahi" chargeback risk, no refund without the seller's OK.
+
+github.com/aadityabaghel25-netizen/haanji
+
+#GnaniAI #GreatIndianAIInternshipChallenge
+```
+
+Then reply to your own post with the details, so the first post stays short:
+
+```
+How it works: Gnani Prisma v3.0 hears the caller in ~0.5 s (Hinglish, Latin letters) → code answers from order + courier records → Gnani Timbre v3.0 speaks it. The seller gets a spoken Hinglish summary too.
+Measured: 82% of held-out requests understood on clean audio, 68% on a noisy 8 kHz line.
+```

@@ -5,7 +5,7 @@ Entry for the Gnani AI Great Indian AI Internship Challenge, by Aaditya Baghel (
 
 ![Haanji answering a call](docs/screenshot.jpg)
 
-Demo video (59 s): see the LinkedIn post, or `demo/haanji-demo.mp4` locally.
+Demo video (60 s): see the X post, or `demo/haanji-demo.mp4` locally.
 
 A small Instagram or website seller gets the same five calls all day: *"mera parcel kahan hai?"*, *"mila hi nahi"*,
 *"return karna hai"*, *"cancel kar do"*, *"galat size aaya"*. They come in Hinglish, on noisy phone lines, often while
@@ -34,7 +34,10 @@ caller ear  ◄── Gnani Timbre v3.0 (voice Shivani, hi-en)  ◄──  "Cour
 | **No language model writes the answers** | A helpline that guesses a delivery date or promises a refund is worse than none. Every sentence Haanji says is built by code from a record, and the record is shown next to it. |
 | **No money moves on a call** | Returns, cancels, refunds, address changes and complaints become tickets. Only the seller approves them, on the dashboard. |
 | **Caller ID decides what may be said** | A known number hears its own orders by name. An unknown number gets tracking status only, never names, addresses or changes. Asking about someone else's order number gets nothing. |
+| **The seller hears a summary** | The dashboard reads out the day in Hinglish (Gnani Timbre): calls, requests waiting, and any chargeback risk. Code writes the words from the call log. |
 | **"Not received" is caught early** | If the courier shows *delivered, OTP verified*, Haanji says so politely, and if the customer still wants to complain, the ticket is flagged as a **chargeback risk** with the proof and the call transcript attached. |
+
+![The seller's dashboard](docs/seller.jpg)
 
 ## Measured
 

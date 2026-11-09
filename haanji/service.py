@@ -172,13 +172,13 @@ class Service:
             for t in waiting:
                 kinds[t["kind"]] = kinds.get(t["kind"], 0) + 1
             listed = ", ".join(f"{n} {self.KIND_SPOKEN.get(k, k)}" for k, n in kinds.items())
-            parts.append(f"{len(waiting)} {'request' if len(waiting) == 1 else 'requests'} aapki approval ka intezaar kar {'rahi hai' if len(waiting) == 1 else 'rahi hain'}: {listed}.")
+            parts.append(f"Approval ke liye {'request' if len(waiting) == 1 else 'requests'}: {listed}.")
         else:
             parts.append("Koi request aapka intezaar nahi kar rahi.")
         for t in waiting:
             if t["risk"] and t["order_id"]:
                 o = self.shop.orders[t["order_id"]]
-                parts.append(f"Dhyaan dijiye, {o['item']} wale order pe chargeback ka khatra hai. Courier ke paas OTP proof hai, aur call ka transcript save hai.")
+                parts.append(f"Dhyaan dijiye, {o.get('short') or o['item']} wale order pe chargeback ka khatra hai. Courier ke paas OTP proof hai.")
         return " ".join(parts)
 
     def reset(self) -> None:
