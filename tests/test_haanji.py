@@ -72,7 +72,7 @@ class ConversationTests(unittest.TestCase):
         r = talk(shop(), "+91 90000 00001", ["mera kurti kab tak aayega"])[0]
         self.assertEqual((r.intent, r.order_id), ("status", "4821"))
         self.assertIn("Delhivery", r.text)
-        self.assertIn("parson", r.text)   # expected two days from today in the demo data
+        self.assertIn("parson", r.text.lower())   # expected two days from today in the demo data
 
     def test_not_received_cites_proof_and_flags_chargeback_risk(self):
         first, ticket = talk(shop(), "+91 90000 00002", ["mera bedsheet nahi mila", "haan darj kar dijiye"])
@@ -148,6 +148,16 @@ class ServiceTests(unittest.TestCase):
         self.assertEqual(d["stats"]["waiting"], 1)
         self.svc.decide(r["ticket"]["id"], approve=True)
         self.assertEqual(self.svc.dashboard()["tickets"][0]["status"], "approved")
+
+    def test_spoken_summary_is_written_from_the_log(self):
+        self.assertIn("koi call nahi", self.svc.summary_text())
+        c = self.svc.start_call("+91 90000 00002")
+        self.svc.turn(c["call_id"], text="bedsheet nahi mila")
+        self.svc.turn(c["call_id"], text="haan")
+        text = self.svc.summary_text()
+        self.assertIn("Aaj 1 call aayi", text)
+        self.assertIn("1 parcel nahi mila", text)
+        self.assertIn("chargeback ka khatra", text)
 
     def test_voice_needs_a_key(self):
         c = self.svc.start_call("+91 90000 00001")

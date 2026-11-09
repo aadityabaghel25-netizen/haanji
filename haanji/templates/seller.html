@@ -2,23 +2,45 @@
 {% block title %}Seller dashboard · Haanji{% endblock %}
 {% block head %}
 <style>
-  .head { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; margin-bottom: 18px; }
+  main { max-width: 1400px; }
+  .head { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
   .head h1 { margin: 0; font-size: 26px; letter-spacing: -.02em; }
+  .grid { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 18px; align-items: start; }
+  @media (max-width: 1000px) { .grid { grid-template-columns: 1fr; } }
+  .brief { display: flex; gap: 18px; align-items: center; background: linear-gradient(135deg, #1d1a16, #3a2a1c); color: #fff; border: 0; margin-bottom: 18px; }
+  .brief .play { width: 64px; height: 64px; border-radius: 50%; flex: none; font-size: 24px; background: linear-gradient(135deg, #f76707, #d9480f); box-shadow: 0 0 0 6px rgba(247,103,7,.2); }
+  .brief .play.on { animation: ring 1.4s infinite; }
+  @keyframes ring { 50% { box-shadow: 0 0 0 14px rgba(247,103,7,.08); } }
+  .brief .k { font-size: 11.5px; font-weight: 750; text-transform: uppercase; letter-spacing: .08em; color: #ffa94d; }
+  .brief .txt { font-size: 15.5px; line-height: 1.5; margin-top: 3px; }
+  .brief canvas { width: 160px; height: 48px; flex: none; }
+  @media (max-width: 760px) { .brief canvas { display: none; } }
   .tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 18px; }
   @media (max-width: 900px) { .tiles { grid-template-columns: repeat(2, 1fr); } }
-  .tile .n { font-size: 30px; font-weight: 800; letter-spacing: -.02em; }
-  .tile .l { font-size: 13px; color: var(--muted); }
-  h2 { font-size: 17px; margin: 0 0 12px; }
-  table { width: 100%; border-collapse: collapse; font-size: 14px; }
-  th { text-align: left; font-size: 12px; color: var(--muted); font-weight: 650; text-transform: uppercase; letter-spacing: .05em; padding: 8px 10px; border-bottom: 1px solid var(--line); }
-  td { padding: 12px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
-  tr.risk td { background: #fffafa; }
-  .actions { display: flex; gap: 6px; } .actions button { padding: 7px 12px; font-size: 13px; }
-  details.call { border-top: 1px solid var(--line); padding: 10px 0; }
-  details.call summary { cursor: pointer; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
-  .t { display: grid; grid-template-columns: 90px 1fr; gap: 4px 12px; font-size: 13.5px; margin: 10px 0 4px; }
-  .t .w { font-weight: 700; color: var(--muted); font-size: 12px; text-transform: uppercase; padding-top: 2px; }
-  .table-wrap { overflow-x: auto; }
+  .tile { display: flex; gap: 14px; align-items: center; }
+  .tile .ic { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; font-size: 20px; background: var(--soft); flex: none; }
+  .tile .n { font-size: 26px; font-weight: 800; letter-spacing: -.02em; line-height: 1.1; }
+  .tile .l { font-size: 12.5px; color: var(--muted); }
+  h2 { font-size: 16px; margin: 0 0 12px; display: flex; justify-content: space-between; align-items: center; }
+  .ticket { border: 1px solid var(--line); border-radius: 14px; padding: 14px; margin-top: 10px; display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: start; }
+  .ticket.risk { border-color: #f4c7c7; background: linear-gradient(0deg, #fff, var(--bad-soft)); }
+  .ticket.done { opacity: .7; }
+  .ticket .t1 { font-weight: 700; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .ticket .t2 { font-size: 13px; color: var(--muted); margin-top: 3px; }
+  .ticket .riskline { font-size: 13px; color: var(--bad); margin-top: 6px; font-weight: 600; }
+  .ticket .acts { display: flex; gap: 6px; } .ticket .acts button { padding: 8px 14px; font-size: 13px; }
+  .ticket .acts .approve { background: var(--ok); }
+  details.call { border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; margin-top: 10px; background: #fff; }
+  details.call summary { cursor: pointer; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; list-style: none; }
+  details.call summary::-webkit-details-marker { display: none; }
+  .av { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; font-size: 12px; font-weight: 800; color: #fff; background: #1d1a16; flex: none; }
+  .av.unknown { background: #8a8177; }
+  .lines { margin-top: 10px; display: flex; flex-direction: column; gap: 6px; }
+  .line { font-size: 13.5px; padding: 7px 10px; border-radius: 10px; max-width: 92%; }
+  .line.caller { background: #1d1a16; color: #fff; align-self: flex-end; }
+  .line.agent { background: var(--soft); align-self: flex-start; }
+  .line .badge { margin-left: 6px; } .line.caller .badge { background: rgba(255,255,255,.14); color: #b2f2bb; }
+  .empty { color: var(--muted); padding: 10px 0; }
 </style>
 {% endblock %}
 {% block content %}
@@ -26,44 +48,76 @@
   <div><h1>{{ shop.name }} · seller dashboard</h1><div class="muted">Every call, transcribed. Nothing changes an order until you approve it here.</div></div>
   <form method="post" action="/seller/reset" onsubmit="return confirm('Clear all demo calls and tickets?')"><button class="secondary">Clear demo data</button></form>
 </div>
+
+<div class="card brief">
+  <button class="play" id="brief-play" title="Play the summary">▶</button>
+  <div style="flex:1;min-width:0"><div class="k">Suniye · today's summary in Hinglish, voiced by Gnani</div>
+    <div class="txt" id="brief-text">Loading…</div></div>
+  <canvas id="brief-viz" width="320" height="96"></canvas>
+</div>
+
 <div class="tiles">
-  <div class="card tile"><div class="n">{{ d.stats.calls }}</div><div class="l">calls answered</div></div>
-  <div class="card tile"><div class="n">{{ d.stats.waiting }}</div><div class="l">tickets waiting for you</div></div>
-  <div class="card tile"><div class="n" style="color:var(--bad)">{{ d.stats.risk }}</div><div class="l">chargeback risks caught early</div></div>
-  <div class="card tile"><div class="n">{{ '%.2f' % d.stats.stt_median if d.stats.stt_median is not none else '–' }}s</div><div class="l">median Gnani speech-to-text time</div></div>
+  <div class="card tile"><div class="ic">📞</div><div><div class="n">{{ d.stats.calls }}</div><div class="l">calls answered</div></div></div>
+  <div class="card tile"><div class="ic">🎫</div><div><div class="n">{{ d.stats.waiting }}</div><div class="l">waiting for your approval</div></div></div>
+  <div class="card tile"><div class="ic" style="background:var(--bad-soft)">⚠️</div><div><div class="n" style="color:var(--bad)">{{ d.stats.risk }}</div><div class="l">chargeback risks caught early</div></div></div>
+  <div class="card tile"><div class="ic" style="background:var(--ok-soft)">⚡</div><div><div class="n">{{ '%.2f' % d.stats.stt_median if d.stats.stt_median is not none else '–' }}s</div><div class="l">median Gnani speech-to-text</div></div></div>
 </div>
 
-<div class="card" style="margin-bottom:18px">
-  <h2>Tickets</h2>
-  {% if d.tickets %}
-  <div class="table-wrap"><table>
-    <tr><th>#</th><th>Request</th><th>Order</th><th>Status</th><th></th></tr>
+<div class="grid">
+  <div class="card">
+    <h2>Requests for you <span class="badge">{{ d.stats.waiting }} waiting</span></h2>
     {% for t in d.tickets %}
-    <tr class="{{ 'risk' if t.risk }}">
-      <td class="mono">{{ t.id }}</td>
-      <td><b>{{ t.summary }}</b>{% if t.risk %}<div class="small" style="color:var(--bad);margin-top:3px">⚠ {{ t.risk }}</div>{% endif %}
-        <div class="small muted">From call {{ t.call_id }} · {{ t.created[:16].replace('T', ' ') }} UTC</div></td>
-      <td>{% if t.order_id %}{% set o = shop.orders[t.order_id] %}<span class="mono">{{ t.order_id }}</span><div class="small muted">{{ o.item }} · ₹{{ o.amount }}</div>{% endif %}</td>
-      <td>{% if t.status == 'waiting' %}<span class="badge warn">Waiting for you</span>{% elif t.status == 'approved' %}<span class="badge ok">Approved</span>{% else %}<span class="badge">Declined</span>{% endif %}</td>
-      <td>{% if t.status == 'waiting' %}<form method="post" action="/seller/tickets/{{ t.id }}" class="actions">
-        <button name="action" value="approve">Approve</button><button class="secondary" name="action" value="decline">Decline</button></form>{% endif %}</td>
-    </tr>
-    {% endfor %}
-  </table></div>
-  {% else %}<p class="muted">No tickets yet. Make a call on the <a href="/">helpline</a>.</p>{% endif %}
+    {% set o = shop.orders[t.order_id] if t.order_id else None %}
+    <div class="ticket {{ 'risk' if t.risk }} {{ 'done' if t.status != 'waiting' }}">
+      <div>
+        <div class="t1">{{ t.summary }}
+          {% if t.status == 'waiting' %}<span class="badge warn">Waiting for you</span>{% elif t.status == 'approved' %}<span class="badge ok">✓ Approved</span>{% else %}<span class="badge">Declined</span>{% endif %}</div>
+        <div class="t2">{% if o %}{{ o.item }} · ₹{{ o.amount }} · {{ o.courier or 'not shipped' }}{% if o.awb %} {{ o.awb }}{% endif %} · {% endif %}call {{ t.call_id }} · {{ t.created[11:16] }} UTC</div>
+        {% if t.risk %}<div class="riskline">⚠ {{ t.risk }}</div>{% endif %}
+      </div>
+      {% if t.status == 'waiting' %}<form method="post" action="/seller/tickets/{{ t.id }}" class="acts">
+        <button class="approve" name="action" value="approve">Approve</button><button class="secondary" name="action" value="decline">Decline</button></form>{% endif %}
+    </div>
+    {% else %}<div class="empty">No requests yet. Make a call on the <a href="/">helpline</a>.</div>{% endfor %}
+  </div>
+
+  <div class="card">
+    <h2>Calls <span class="badge">{{ d.calls | length }}</span></h2>
+    {% for c in d.calls %}
+    <details class="call" {% if loop.first %}open{% endif %}>
+      <summary><span class="av {{ 'unknown' if not c.customer }}">{{ c.who.split()[0][0] if c.customer else '?' }}{{ c.who.split()[1][0] if c.customer and c.who.split() | length > 1 else '' }}</span>
+        <b>{{ c.who }}</b><span class="badge">{{ c.turns | selectattr('who', 'equalto', 'caller') | list | length }} turns</span>
+        {% for i in c.turns | map(attribute='intent') | unique %}{% if i not in ('greeting', 'yes', 'no', 'bye', 'silence') %}<span class="badge brand">{{ i }}</span>{% endif %}{% endfor %}</summary>
+      <div class="lines">
+        {% for t in c.turns %}<div class="line {{ t.who }}">{{ t.text }}{% if t.stt_s %}<span class="badge">Gnani {{ t.stt_s }}s</span>{% endif %}</div>{% endfor %}
+      </div>
+    </details>
+    {% else %}<div class="empty">No calls yet.</div>{% endfor %}
+  </div>
 </div>
 
-<div class="card">
-  <h2>Calls</h2>
-  {% for c in d.calls %}
-  <details class="call" {% if loop.first %}open{% endif %}>
-    <summary><b>{{ c.who }}</b><span class="mono muted">{{ c.phone }}</span><span class="badge">{{ c.turns | selectattr('who', 'equalto', 'caller') | list | length }} turns</span>
-      {% for i in c.turns | map(attribute='intent') | unique %}{% if i not in ('greeting', 'yes', 'no', 'bye', 'silence') %}<span class="badge brand">{{ i }}</span>{% endif %}{% endfor %}
-      <span class="small muted">{{ c.started[:16].replace('T', ' ') }} UTC</span></summary>
-    <div class="t">
-      {% for t in c.turns %}<div class="w">{{ 'Caller' if t.who == 'caller' else 'Haanji' }}</div><div>{{ t.text }}{% if t.stt_s %} <span class="badge">Gnani STT {{ t.stt_s }}s</span>{% endif %}</div>{% endfor %}
-    </div>
-  </details>
-  {% else %}<p class="muted">No calls yet.</p>{% endfor %}
-</div>
+<script>
+(async function () {
+  const btn = document.getElementById('brief-play'), txt = document.getElementById('brief-text'), c = document.getElementById('brief-viz');
+  let data = null, ctx = null, an = null;
+  try { data = await (await fetch('/seller/summary?text=1')).json(); txt.textContent = data.text; } catch (e) { txt.textContent = 'Summary unavailable.'; }
+  function draw() {
+    const g = c.getContext('2d'), arr = new Uint8Array(an.frequencyBinCount);
+    (function f() { requestAnimationFrame(f); an.getByteFrequencyData(arr); g.clearRect(0, 0, c.width, c.height);
+      for (let i = 0; i < 24; i++) { const v = arr[Math.floor(i * arr.length / 40)] / 255, h = Math.max(6, v * c.height);
+        g.fillStyle = '#f76707'; g.fillRect(i * 13 + 4, (c.height - h) / 2, 7, h); } })();
+  }
+  btn.onclick = async () => {
+    btn.disabled = true; btn.textContent = '…';
+    const r = await (await fetch('/seller/summary')).json();
+    if (!r.audio) { btn.textContent = '▶'; btn.disabled = false; return; }
+    const a = new Audio(r.audio);
+    if (!ctx) { ctx = new AudioContext(); an = ctx.createAnalyser(); an.fftSize = 256; an.connect(ctx.destination); draw(); }
+    ctx.createMediaElementSource(a).connect(an);
+    btn.classList.add('on'); btn.textContent = '🔊';
+    a.onended = () => { btn.classList.remove('on'); btn.textContent = '▶'; btn.disabled = false; };
+    a.play();
+  };
+})();
+</script>
 {% endblock %}

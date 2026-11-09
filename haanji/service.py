@@ -156,6 +156,31 @@ class Service:
                 "stats": {"calls": len(calls), "waiting": sum(t["status"] == "waiting" for t in tickets),
                           "risk": sum(bool(t["risk"]) for t in tickets), "stt_median": med(stt), "tts_median": med(tts_)}}
 
+    KIND_SPOKEN = {"return": "return", "cancel": "cancel", "not_received": "parcel nahi mila", "damaged": "kharab ya galat item",
+                   "address": "address badalna", "callback": "callback"}
+
+    def summary_text(self) -> str:
+        """The seller's spoken briefing, written by code from the call log (never by a model)."""
+        d = self.dashboard()
+        calls = d["stats"]["calls"]
+        if not calls:
+            return "Abhi tak koi call nahi aayi. Haanji line pe hai, aur har call yahan dikhegi."
+        waiting = [t for t in d["tickets"] if t["status"] == "waiting"]
+        parts = [f"Aaj {calls} {'call' if calls == 1 else 'calls'} aayi."]
+        if waiting:
+            kinds = {}
+            for t in waiting:
+                kinds[t["kind"]] = kinds.get(t["kind"], 0) + 1
+            listed = ", ".join(f"{n} {self.KIND_SPOKEN.get(k, k)}" for k, n in kinds.items())
+            parts.append(f"{len(waiting)} {'request' if len(waiting) == 1 else 'requests'} aapki approval ka intezaar kar {'rahi hai' if len(waiting) == 1 else 'rahi hain'}: {listed}.")
+        else:
+            parts.append("Koi request aapka intezaar nahi kar rahi.")
+        for t in waiting:
+            if t["risk"] and t["order_id"]:
+                o = self.shop.orders[t["order_id"]]
+                parts.append(f"Dhyaan dijiye, {o['item']} wale order pe chargeback ka khatra hai. Courier ke paas OTP proof hai, aur call ka transcript save hai.")
+        return " ".join(parts)
+
     def reset(self) -> None:
         with self.lock:
             self.db.executescript("DELETE FROM calls; DELETE FROM turns; DELETE FROM tickets;")

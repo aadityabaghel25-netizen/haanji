@@ -53,6 +53,18 @@ async def seller(request: Request):
     return templates.TemplateResponse(request, "seller.html", {"shop": service.shop, "d": service.dashboard()})
 
 
+async def summary_audio(request: Request):
+    """The seller's spoken briefing. Text by code, voice by Gnani Timbre."""
+    text = service.summary_text()
+    if request.query_params.get("text") == "1" or not settings.voice_on:
+        return JSONResponse({"text": text})
+    try:
+        key, _ = service.speak(text)
+    except GnaniError as e:
+        return JSONResponse({"error": str(e)}, 502)
+    return JSONResponse({"text": text, "audio": f"/audio/{key}.mp3"})
+
+
 async def decide(request: Request):
     form = await request.form()
     service.decide(int(request.path_params["ticket_id"]), form.get("action") == "approve")
@@ -134,6 +146,7 @@ app = Starlette(routes=[
     Route("/seller", seller),
     Route("/seller/tickets/{ticket_id:int}", decide, methods=["POST"]),
     Route("/seller/reset", reset, methods=["POST"]),
+    Route("/seller/summary", summary_audio),
     Route("/api/call", api_call, methods=["POST"]),
     Route("/api/call/{call_id:int}/turn", api_turn, methods=["POST"]),
     Route("/api/call/{call_id:int}/hangup", api_hangup, methods=["POST"]),

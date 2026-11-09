@@ -114,8 +114,7 @@ class Reply:
 
 def greeting(shop: Shop, caller: dict | None) -> str:
     who = f"Namaste {caller['name']} ji! " if caller else "Namaste! "
-    return (f"{who}{shop.name} helpline mein aapka swagat hai. Main shop ki AI assistant hoon. "
-            "Bataiye, main aapki kya madad kar sakti hoon?")
+    return f"{who}{shop.name} helpline. Main shop ki AI assistant hoon. Bataiye, kya madad karoon?"
 
 
 def respond(text: str, state: dict, shop: Shop, caller: dict | None) -> Reply:
@@ -162,7 +161,7 @@ def respond(text: str, state: dict, shop: Shop, caller: dict | None) -> Reply:
 
     if intent == "bye":
         state["pending"] = None
-        return Reply(f"{shop.name} ko call karne ke liye dhanyavaad. Aapka din shubh ho!", "bye", order_id, end=True)
+        return Reply("Dhanyavaad! Aapka din shubh ho.", "bye", order_id, end=True)
     if intent == "human":
         return _offer("callback", order_id, shop, state,
                       f"Main seller ko aapko call back karne ke liye bol sakti hoon, {shop.support_hours}. Kya main callback request darj karoon?")
@@ -201,26 +200,26 @@ def _answer(intent: str, o: dict, shop: Shop, state: dict, known_caller: bool) -
 
     if intent in ("status", "not_received") and not delivered:
         if o["status"] == "packed":
-            text = (f"Aapka {item} pack ho chuka hai aur abhi courier ko diya jaana hai. "
-                    f"Yeh lagbhag {say_date(o['expected_on'], today)} tak pahunch jaayega. Ship hote hi aapko SMS aa jaayega.")
+            text = (f"Aapka {item} pack ho gaya hai, jaldi ship hoga. Lagbhag {say_date(o['expected_on'], today)} tak pahunch jaayega, "
+                    "aur ship hote hi SMS aayega.")
         else:
-            text = (f"Aapka {item}, order {say_digits(oid)}, {say_date(o['shipped_on'], today)} ship hua tha, {o['courier']} se. "
-                    f"Abhi yeh {o.get('last_scan', 'raaste mein')} pe hai, aur {say_date(o['expected_on'], today)} tak deliver ho jaana chahiye.")
+            text = (f"Aapka {item} {o['courier']} se ship ho chuka hai, abhi {o.get('last_scan', 'raaste mein')} pe hai. "
+                    f"{say_date(o['expected_on'], today).capitalize()} tak pahunch jaayega.")
             facts.append(f"Shipped {o['shipped_on']}, last scan {o.get('last_scan')}, expected {o['expected_on']}")
         return Reply(text + " Aur kuch?", intent, oid, facts)
 
     if intent == "status":
-        text = f"Aapka {item}, order {say_digits(oid)}, {say_date(o['delivered_on'], today)} deliver ho chuka hai."
+        text = f"Aapka {item} {say_date(o['delivered_on'], today)} deliver ho chuka hai."
         if known_caller and o.get("received_by"):
-            text += f" Courier ke record mein {o['received_by']} ne receive kiya tha."
+            text += f" {o['received_by']} ne receive kiya tha."
         facts.append(f"Delivered {o['delivered_on']}, {o.get('proof', '')}")
         return Reply(text + " Kya parcel mil gaya?", intent, oid, facts)
 
     if intent == "not_received":
         facts.append(f"Delivered {o['delivered_on']} to {o.get('received_by')}, {o.get('proof')}")
-        text = (f"Courier {o['courier']} ke record ke hisaab se aapka {item} {say_date(o['delivered_on'], today)} deliver hua tha, "
-                f"door par OTP se verify karke{', ' + o['received_by'] + ' ne receive kiya' if known_caller and o.get('received_by') else ''}. "
-                "Kya aap ghar mein ek baar pooch sakte hain? Agar phir bhi nahi mila, toh main seller ke liye complaint darj kar sakti hoon. Darj karoon?")
+        who = f", {o['received_by']} ne receive kiya" if known_caller and o.get("received_by") else ""
+        text = (f"{o['courier']} ke record mein aapka {item} {say_date(o['delivered_on'], today)} OTP se deliver hua tha{who}. "
+                "Ek baar ghar pe pooch lijiye. Phir bhi nahi mila, toh complaint darj karoon?")
         state["pending"] = "confirm:not_received"
         return Reply(text, intent, oid, facts)
 
@@ -228,8 +227,7 @@ def _answer(intent: str, o: dict, shop: Shop, state: dict, known_caller: bool) -
         if not delivered:
             return Reply(f"Aapka {item} abhi deliver nahi hua hai. Milne ke baad koi problem ho toh zaroor call kijiye.", intent, oid, facts)
         state["pending"] = "confirm:damaged"
-        return Reply(f"Maaf kijiye, aapke {item} mein problem hai. Main complaint darj kar sakti hoon. Seller aapko WhatsApp pe photo maangne ke liye "
-                     "message karega. Complaint darj karoon?", intent, oid, facts)
+        return Reply(f"Maaf kijiye, {item} mein problem aayi. Seller WhatsApp pe photo maangega. Complaint darj karoon?", intent, oid, facts)
 
     if intent == "return":
         if not delivered:
@@ -243,14 +241,14 @@ def _answer(intent: str, o: dict, shop: Shop, state: dict, known_caller: bool) -
             return Reply(f"Aapka {item} {days} din pehle deliver hua tha. Return sirf {shop.return_days} din tak hota hai, jo {say_date(last, today)} ko khatam ho gaya. "
                          "Kya main seller se aapko callback karwa doon?", intent, oid, facts)
         state["pending"] = "confirm:return"
-        return Reply(f"Aapka {item} return ho sakta hai, {say_date(last, today)} tak. Main return request darj kar deti hoon. Seller approve karega, "
-                     f"pickup hoga, aur parcel wapas aane ke baad ₹{o['amount']} ka refund aapke original payment mein jaayega. Request darj karoon?", intent, oid, facts)
+        return Reply(f"Haan, aapka {item} {say_date(last, today)} tak return ho sakta hai. Seller approve karega, pickup hoga, "
+                     f"aur ₹{o['amount']} ka refund aapke original payment mein aayega. Request darj karoon?", intent, oid, facts)
 
     if intent == "cancel":
         if o["status"] == "packed":
             state["pending"] = "confirm:cancel"
-            return Reply(f"Aapka {item} abhi ship nahi hua hai, isliye cancel ho sakta hai. Main cancel request darj kar deti hoon. Seller confirm karega, "
-                         f"aur ₹{o['amount']} ka refund aapke original payment mein aayega. Darj karoon?", intent, oid, facts)
+            return Reply(f"Aapka {item} abhi ship nahi hua, isliye cancel ho sakta hai. Seller confirm karega, aur ₹{o['amount']} ka refund "
+                         "original payment mein aayega. Cancel request darj karoon?", intent, oid, facts)
         if delivered:
             return _answer("return", o, shop, state, known_caller)
         return Reply(f"Aapka {item} ship ho chuka hai, isliye ab cancel nahi ho sakta. Delivery ke baad aap {shop.return_days} din mein return kar sakte hain.",
@@ -274,10 +272,10 @@ def _offer(kind: str, order_id, shop: Shop, state: dict, text: str) -> Reply:
 
 
 TICKET_TEXT = {
-    "return": ("Return request", "Aapki return request darj ho gayi hai. Seller approve karte hi pickup ki jaankari SMS pe aayegi."),
-    "cancel": ("Cancel request", "Aapki cancel request darj ho gayi hai. Seller confirm karte hi refund shuru ho jaayega."),
-    "not_received": ("Says not received", "Aapki complaint darj ho gayi hai. Seller courier se baat karke aapko 24 ghante mein call karega."),
-    "damaged": ("Damaged or wrong item", "Aapki complaint darj ho gayi hai. Seller aapko WhatsApp pe photo ke liye message karega."),
+    "return": ("Return request", "Return request darj ho gayi. Seller approve karte hi pickup ka SMS aayega."),
+    "cancel": ("Cancel request", "Cancel request darj ho gayi. Seller confirm karte hi refund shuru hoga."),
+    "not_received": ("Says not received", "Complaint darj ho gayi. Seller courier se baat karke 24 ghante mein call karega."),
+    "damaged": ("Damaged or wrong item", "Complaint darj ho gayi. Seller WhatsApp pe photo ke liye message karega."),
     "address": ("Address change", "Request darj ho gayi hai. Seller WhatsApp pe naya address confirm karega."),
     "callback": ("Callback", "Theek hai, seller aapko jald call karega."),
 }
@@ -290,4 +288,4 @@ def _make_ticket(kind: str, order_id, shop: Shop, state: dict) -> Reply:
         o = shop.orders[order_id]
         risk = f"Chargeback risk: courier shows delivered {o['delivered_on']} ({o['proof']}). Keep this call as evidence."
     ticket = Ticket(kind, order_id, f"{title}{' for order ' + order_id if order_id else ''}", risk)
-    return Reply(said + " Aur kuch madad chahiye?", kind, order_id, ticket=ticket)
+    return Reply(said + " Aur kuch?", kind, order_id, ticket=ticket)
