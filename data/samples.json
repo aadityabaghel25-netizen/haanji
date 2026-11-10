@@ -10,6 +10,6 @@
     {"phone": "+91 90000 00004", "label": "Neha Gupta, Indore", "voice": "Kalpana",
      "lines": ["Mujhe apna dupatta wala order cancel karna hai.", "Haan, kar dijiye."]},
     {"phone": "+91 98765 00000", "label": "Unknown number", "voice": "Yashraj",
-     "lines": ["Mera order kahan hai?", "Order number chaar aath do ek.", "Achha, mujhe isko return karna hai."]}
+     "lines": ["Mera order kahan hai?", "Order number 4 8 2 1.", "Achha, mujhe isko return karna hai."]}
   ]
 }

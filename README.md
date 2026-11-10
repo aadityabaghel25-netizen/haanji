@@ -2,6 +2,7 @@
 
 **Built on Gnani AI: Prisma v3.0 speech-to-text and Timbre v3.0 text-to-speech.**
 Entry for the Gnani AI Great Indian AI Internship Challenge, by Aaditya Baghel (solo).
+**One-page pitch: [PITCH.md](PITCH.md).**
 
 ![Haanji answering a call](docs/screenshot.jpg)
 

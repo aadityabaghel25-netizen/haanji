@@ -13,6 +13,7 @@
 - Demo video `demo/haanji-demo.mp4` (59 s, gitignored), real call recorded with Playwright, audio rebuilt from the clips the page played.
 - Public repo: https://github.com/aadityabaghel25-netizen/haanji (pushed 2026-11-09).
 - Round 2 (09 Nov): shorter spoken replies (short item names), seller's spoken Hinglish summary (`/seller/summary`), redesigned seller dashboard, video re-recorded (59.5 s, opens with sourced data from docs/PROBLEM.md). Posting on X; Gnani's handle is @GnaniAi.
+- 10 Nov: Gnani form needs a 1-page pitch (PITCH.md) and a 2–3 min demo: `demo/haanji-demo-full.mp4` (2:57, three calls). Unknown-caller sample now says "Order number 4 8 2 1" ("chaar aath do ek" was misheard by Gnani as "icar ath do ek").
 - **Next:** X post (needed before submitting), submission form. Answers in `docs/SUBMISSION.md`.
 
 ## Decisions
