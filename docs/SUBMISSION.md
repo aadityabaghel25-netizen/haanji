@@ -1,5 +1,7 @@
 # Gnani AI Great Indian AI Internship Challenge: submission draft
 
+X post (live): https://x.com/Aadityacdc1/status/2120159501894758520
+
 Deadline: **10 Nov 2026, 11:59 PM IST.** Order of steps: push the repo → post the demo on LinkedIn (and X) → submit the
 form with the post links. The post must be live before you submit. Shortlisting is by verified engagement on the
 nominated posts, so post as early as you can.
